@@ -1,8 +1,5 @@
 # Racquet Recommendation
 
-### Program entirely written in Java (JDK 11)
-_No frameworks or libraries were used_
-
 ### Description
 
 **Purpose**
