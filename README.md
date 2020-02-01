@@ -16,7 +16,7 @@ This is a program developed as a term project for MET CS 526 at Boston Universit
 **Tools**
 
 * Java JDK 11
-* txt/xls I/O to import racquet data
+* Apache POI for reading Excel files
 * JDBC API with SQL for storing data
 * JavaFX for basic UI
 

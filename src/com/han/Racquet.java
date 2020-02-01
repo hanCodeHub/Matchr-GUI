@@ -91,4 +91,12 @@ public class Racquet {
         this.strength = strength;
     }
 
+    @Override
+    public String toString() {
+        return "Racquet{" +
+                "id=" + id +
+                ", brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                '}' + "\n";
+    }
 }

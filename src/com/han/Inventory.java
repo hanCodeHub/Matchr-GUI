@@ -18,14 +18,19 @@ public class Inventory {
     // inventory of Racquet objects
     private static ArrayList<Racquet> racquetList = new ArrayList<>(20);
 
-    public static void main(String[] args) {
+    // returns the list of racquets to client program by reading input file
+    public static ArrayList<Racquet> getRacquetList() {
         readFromExcel(inventoryPath);
+        System.out.println("Racquet inventory successfully updated.\n");
+        return racquetList;
     }
 
+    // writes inventory to text file - include only {id, brand, model}
+
     // reads inventory data from excel file of given file path
+    // then populates the racquetList with Racquet objects
     // PRECONDITION: table headers in input file should match class Racquet attributes
-    // returns an ArrayList of Racquet objects
-    public static void readFromExcel(String inventoryPath) {
+    private static void readFromExcel(String inventoryPath) {
 
         try (FileInputStream file = new FileInputStream(new File(inventoryPath))) {
             // create a new workbook
@@ -42,24 +47,18 @@ public class Inventory {
                 // each cell in row is stored as an attribute in temp list
                 Iterator<Cell> cellIter = row.cellIterator();
                 List<String> attributes = new ArrayList<>(10);
+
                 // iterate through each cell
                 while (cellIter.hasNext()) {
                     Cell cell = cellIter.next();
-
-                    // validate cell value, must be either text or numeric
-                    if (!getCellValue(cell)) throw new InputMismatchException();
-
                     // add cell value to list of attributes (as Strings)
-                    if (cell.getCellType() == CellType.STRING)
-                        attributes.add(cell.getStringCellValue());
-                    else if (cell.getCellType() == CellType.NUMERIC)
-                        attributes.add(String.valueOf((int) cell.getNumericCellValue()));
+                    extractRowVals(attributes, cell);
                 }
-
-                System.out.println(attributes.toString());
+                // create a new Racquet object from attributes
+                racquetList.add(createRacquet(attributes));
             }
 
-        } catch (FileNotFoundException err) {  // subclass exception 1st
+        } catch (FileNotFoundException err) {
             System.out.println("racquet_inventory file does not exist!");
             err.printStackTrace();
         } catch (IOException err) {
@@ -73,14 +72,34 @@ public class Inventory {
 
     }
 
+    // returns a Racquet object from a list of attributes
+    private static Racquet createRacquet(List<String> attributes) {
+        return new Racquet(
+                Integer.parseInt(attributes.get(0)),  // id
+                attributes.get(1),  // brand
+                attributes.get(2),  // model
+                Integer.parseInt(attributes.get(3)),  // weight
+                Integer.parseInt(attributes.get(4)),  // balance
+                Integer.parseInt(attributes.get(5)),  // stiffness
+                Integer.parseInt(attributes.get(6)),  // style
+                Integer.parseInt(attributes.get(7)),  // skill
+                Integer.parseInt(attributes.get(8))  // strength
+        );
+    }
 
-    // checks whether cell type of a given cell is valid
-    private static Boolean getCellValue(Cell cell) throws InputMismatchException {
+    // populates a list of String cell values from the row of excel data
+    private static void extractRowVals(List<String> attributes, Cell cell)
+            throws InputMismatchException {
+
         // check for cell type and extract data
         CellType cellType = cell.getCellType();
 
-        // validate cell value, must be either text or numeric
-        return (cellType == CellType.NUMERIC) || (cellType == CellType.STRING);
+        // add cell value to list of attributes (as Strings)
+        if (cellType == CellType.STRING)
+            attributes.add(cell.getStringCellValue());
+        else if (cellType == CellType.NUMERIC)
+            attributes.add(String.valueOf((int) cell.getNumericCellValue()));
+        else throw new InputMismatchException();
     }
 
     // FOR DEBUGGING ONLY
