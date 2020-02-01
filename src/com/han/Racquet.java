@@ -1,45 +1,47 @@
 package com.han;
 
 public class Racquet {
-
-    // basic attributes
-    private int style;      // 1 - 5
-    private int skill;      // 1 - 5
-    private int strength;   // 1 - 5
+    // unique identifier and info
+    private int id;
+    private String brand;
+    private String model;
 
     // advanced attributes
     private int weight;     // 1 - 5
     private int balance;    // 1 - 10
     private int stiffness;  // 1 - 10
 
-    // presented information
-    private String brand;
-    private String model;
-    private String description; // optional
+    // basic attributes
+    private int style;      // 1 - 5
+    private int skill;      // 1 - 5
+    private int strength;   // 1 - 5
 
-    // Racquet attributes are never altered after initialization
-    public Racquet(int style, int skill, int strength, int weight, int balance, int stiffness,
-            String brand, String model, String description) {
-        this.style = style;
-        this.skill = skill;
-        this.strength = strength;
+    // default constructor used when reading from inventory file
+    public Racquet() {}
+
+    public Racquet(int id, String brand, String model,
+                   int weight, int balance, int stiffness,
+                   int style, int skill, int strength) {
+        this.id = id;
+        this.brand = brand;
+        this.model = model;
         this.weight = weight;
         this.balance = balance;
         this.stiffness = stiffness;
-        this.brand = brand;
-        this.model = model;
-        this.description = description;
+        this.style = style;
+        this.skill = skill;
+        this.strength = strength;
     }
 
     // getters
-    public int getStyle() {
-        return style;
+    public int getId() {
+        return id;
     }
-    public int getSkill() {
-        return skill;
+    public String getBrand() {
+        return brand;
     }
-    public int getStrength() {
-        return strength;
+    public String getModel() {
+        return model;
     }
     public int getWeight() {
         return weight;
@@ -50,19 +52,43 @@ public class Racquet {
     public int getStiffness() {
         return stiffness;
     }
+    public int getStyle() {
+        return style;
+    }
+    public int getSkill() {
+        return skill;
+    }
+    public int getStrength() {
+        return strength;
+    }
 
-    public String getBrand() {
-        return brand;
+    // setters
+    public void setId(int id) {
+        this.id = id;
     }
-    public String getModel() {
-        return model;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
-    public String getDescription() {
-        return description;
+    public void setModel(String model) {
+        this.model = model;
+    }
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+    public void setStiffness(int stiffness) {
+        this.stiffness = stiffness;
+    }
+    public void setStyle(int style) {
+        this.style = style;
+    }
+    public void setSkill(int skill) {
+        this.skill = skill;
+    }
+    public void setStrength(int strength) {
+        this.strength = strength;
     }
 
-    // description can be optionally added later
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }
