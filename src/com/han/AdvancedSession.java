@@ -37,8 +37,9 @@ public class AdvancedSession extends Session {
     }
 
     public Boolean doubleCheck() {
-        System.out.println("Do you understand how racquet specifications work? \n" +
-                "Enter y if you wish to proceed");
+        System.out.println("Do you understand how racquet specifications work?\n" +
+                "Enter y if you wish to proceed.\n" +
+                "Enter anything else to proceed with basic questions.");
         // any answer other than 'y' should default to false
         return scan.next().equals("y");
     }

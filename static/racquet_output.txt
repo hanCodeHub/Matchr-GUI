@@ -1,0 +1,7 @@
+INVENTORY OF RACQUETS
+---------------------
+id = 1 | brand = Yonex | model = NanoSpeed 9900
+id = 2 | brand = Victor | model = Thruster K 7000
+id = 3 | brand = Lining | model = N9 TD
+id = 4 | brand = Mizuno | model = Fortius 30 Power
+id = 5 | brand = Carlton | model = Air Edge

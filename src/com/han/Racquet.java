@@ -33,70 +33,9 @@ public class Racquet {
         this.strength = strength;
     }
 
-    // getters
-    public int getId() {
-        return id;
-    }
-    public String getBrand() {
-        return brand;
-    }
-    public String getModel() {
-        return model;
-    }
-    public int getWeight() {
-        return weight;
-    }
-    public int getBalance() {
-        return balance;
-    }
-    public int getStiffness() {
-        return stiffness;
-    }
-    public int getStyle() {
-        return style;
-    }
-    public int getSkill() {
-        return skill;
-    }
-    public int getStrength() {
-        return strength;
-    }
-
-    // setters
-    public void setId(int id) {
-        this.id = id;
-    }
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-    public void setModel(String model) {
-        this.model = model;
-    }
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
-    public void setBalance(int balance) {
-        this.balance = balance;
-    }
-    public void setStiffness(int stiffness) {
-        this.stiffness = stiffness;
-    }
-    public void setStyle(int style) {
-        this.style = style;
-    }
-    public void setSkill(int skill) {
-        this.skill = skill;
-    }
-    public void setStrength(int strength) {
-        this.strength = strength;
-    }
-
     @Override
     public String toString() {
-        return "Racquet{" +
-                "id=" + id +
-                ", brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                '}' + "\n";
+        return
+                "id = " + id + " | brand = " + brand + " | model = " + model +"\n";
     }
 }

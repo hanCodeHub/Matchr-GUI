@@ -16,42 +16,60 @@ public abstract class Session {
     protected static Scanner scan = new Scanner(System.in);
 
     // obtains questions from concrete session classes
-    public abstract List<Question> getQuestions();
+    protected abstract List<Question> getQuestions();
+
+    // tracks current session
+    private static Session session = null;
+
 
     // returns a new session by having user select from menu options
     public static void initSession() {
         // track current session of the user
-        Session session;
 
         while(true) {
             displayMenu();
 
-            // handle menu choices
+            // handle menu choices. menu is reset if handler returns true
             int menuChoice = Session.scan.nextInt();
-            // 0: update racquet inventory
-            if (menuChoice == 0) {
-                Inventory.getRacquetList();
-            }
-            // 1: init session with basic questions
-            else if (menuChoice == 1) {
-                session = new BasicSession();
-                break;
-            }
-            // 2: init
-            else if (menuChoice == 2) {
-                session = new AdvancedSession();
-                // downcast to confirm user selection of advanced option
-                if (!((AdvancedSession) session).doubleCheck()) {
-                    session = new BasicSession();
-                }
-                break;
-            }
-            // restart menu unless user enters 1 or 2
+            if (!handleChoices(menuChoice)) break;
         }
+
+        // process user questions and display saved preferences
         session.askQuestions(session.getQuestions());
         session.displayPreferences();
 
+        // MORE CODE ADDED LATER TO MATCH PREFERENCES TO RECOMMENDATION
+        System.out.println("Searching for your ideal racquet...");
     }
+
+    // handles the user menu choices based on the session above
+    // returns boolean to check if menu should be reset
+    private static Boolean handleChoices(int menuChoice) {
+
+        boolean reset = false;
+
+        switch(menuChoice) {
+            case 0: // exit program
+                System.exit(0);
+            case 1: // user chose basic questions
+                session = new BasicSession();
+                break;
+            case 2: // user chose advanced questions
+                session = new AdvancedSession();
+                // downcast to confirm user selection of advanced option
+                if (!((AdvancedSession) session).doubleCheck())
+                    session = new BasicSession();
+                break;
+            case 3: // update inventory with excel file and reset menu
+                Inventory.updateInventory();
+                reset = true;
+                break;
+            default: // if choice was not valid, reset menu
+                reset = true;
+        }
+        return reset;
+    }
+
 
     // asks the user each question in the list and returns answers as preferences
     private void askQuestions(List<Question> questions) {
@@ -75,13 +93,18 @@ public abstract class Session {
         return userInput;
     }
 
+
     // utility display methods
     private static void displayMenu() {
-        System.out.println("Select a number from the following menu options:\n" +
-                "0. Update inventory of racquets with input from excel file\n" +
-                "1. Ask me basic questions based on my style of play\n" +
-                "2. Ask me advanced questions based on racquet specifications\n");
+        System.out.println(
+                "Enter a number from the following menu options:\n" +
+                "0. Quit the program\n" +
+                "1. Ask me basic questions based on personal preferences\n" +
+                "2. Ask me advanced questions based on racquet specifications\n" +
+                "3. Update inventory of racquets with input from excel file\n"
+        );
     }
+
     private void displayPreferences() {
         System.out.println("Finding a match with your preferences: " +
                 preferences.toString());
