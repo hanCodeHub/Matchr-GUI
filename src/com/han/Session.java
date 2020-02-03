@@ -97,7 +97,7 @@ public abstract class Session {
     // utility display methods
     private static void displayMenu() {
         System.out.println(
-                "Enter a number from the following menu options:\n" +
+                "\nEnter a number from the following menu options:\n" +
                 "0. Quit the program\n" +
                 "1. Ask me basic questions based on personal preferences\n" +
                 "2. Ask me advanced questions based on racquet specifications\n" +

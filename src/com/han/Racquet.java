@@ -33,6 +33,35 @@ public class Racquet {
         this.strength = strength;
     }
 
+    // getters
+    public int getId() {
+        return id;
+    }
+    public String getBrand() {
+        return brand;
+    }
+    public String getModel() {
+        return model;
+    }
+    public int getWeight() {
+        return weight;
+    }
+    public int getBalance() {
+        return balance;
+    }
+    public int getStiffness() {
+        return stiffness;
+    }
+    public int getStyle() {
+        return style;
+    }
+    public int getSkill() {
+        return skill;
+    }
+    public int getStrength() {
+        return strength;
+    }
+
     @Override
     public String toString() {
         return

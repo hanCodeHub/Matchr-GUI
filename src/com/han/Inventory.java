@@ -8,13 +8,15 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class Inventory {
 
     // relative path to project's static assets
-    private static String projectPath = new File("").getAbsolutePath()
-            .concat("/static");
+    private static final Path inputPath = Paths.get("static/racquet_inventory.xlsx");
+    private static final Path outputPath = Paths.get("static/racquet_output.txt");
 
     // inventory of Racquet objects
     private static ArrayList<Racquet> racquetList = new ArrayList<>(20);
@@ -22,13 +24,10 @@ public class Inventory {
 
     // returns the list of racquets to client program after reading input file
     public static ArrayList<Racquet> updateInventory() {
-        readFromExcel(projectPath);
-
-        System.out.println("Racquet inventory successfully updated in the database.\n" +
-                "See racquet_output.txt for a basic summary of available racquets.\n");
+        readFromExcel();
 
         // provides receipt by printing basic summary of inventory to txt file
-        writeToText(projectPath);
+        writeToText();
 
         // returned value will be used to match with recommendations in future releases
         return racquetList;
@@ -38,10 +37,9 @@ public class Inventory {
     // reads inventory data from excel file of given file path
     // then populates the racquetList with Racquet objects
     // PRECONDITION: table headers in input file should match class Racquet attributes
-    private static void readFromExcel(String projectPath) {
-        String inventoryPath = projectPath.concat("/racquet_inventory.xlsx");
+    private static void readFromExcel() {
 
-        try (FileInputStream file = new FileInputStream(new File(inventoryPath))) {
+        try (FileInputStream file = new FileInputStream(Inventory.inputPath.toFile())) {
             // create a new workbook
             XSSFWorkbook workbook = new XSSFWorkbook(file);
             // obtain the first sheet in workbook
@@ -66,25 +64,28 @@ public class Inventory {
                 // create a new Racquet object from attributes
                 racquetList.add(createRacquet(attributes));
             }
-
+            System.out.println("Racquet inventory successfully updated in the database.\n");
+        // if file does not exist
         } catch (FileNotFoundException err) {
-            System.out.println("racquet_inventory file does not exist!");
-            err.printStackTrace();
-
+            System.out.println(
+                    "racquet_inventory.xlsx file does not exist in /static directory.\n" +
+                    "Please create the file and restart the program.");
+        // if file cannot be opened
         } catch (IOException err) {
-            System.out.println("could not read the file!");
-            err.printStackTrace();
-
+            System.out.println("An error occurred when reading the file. " +
+                    "You may not have permissions.\n " +
+                    "Please check the file and restart the program");
+        // if values in the cells cannot be read
         } catch (InputMismatchException err) {
+            System.out.println("The format of values in the cells are not correct.");
             System.out.println(err.getMessage());
-            err.printStackTrace();
         }
     }
 
 
     // writes inventory to text file. include only {id, brand, model} for each Racquet
-    private static void writeToText(String projectPath) throws NotImplementedException {
-        String outPath = projectPath.concat("/racquet_output.txt");
+    private static void writeToText() throws NotImplementedException {
+
         Formatter outfile = null;
 
         try {
@@ -93,23 +94,25 @@ public class Inventory {
                 throw new NotImplementedException("The inventory is empty!");
 
             // open file and write each racquet to it
-            outfile = new Formatter(outPath);
+            outfile = new Formatter(outputPath.toFile());
             outfile.flush();  // flush if used within same session
             outfile.format("INVENTORY OF RACQUETS\n");
             outfile.format("---------------------\n");
 
             for (Racquet racquet : racquetList) {
                 // output format specified in Racquet.toString() method
-                outfile.format(racquet.toString());
+                if (racquet != null) outfile.format(racquet.toString());
             }
+            System.out.println(
+                    "See racquet_output.txt for a basic summary of available racquets.\n");
 
         } catch (SecurityException | FileNotFoundException | FormatterClosedException err ) {
-            System.err.println("Cannot open file");
-            err.printStackTrace();
+            System.err.println("Cannot open file. Please ensure that racquet_output.txt exists," +
+                    "and that you have access to it. Then restart the program.");
 
         } catch (NotImplementedException err) {
+            System.out.println("Could not write data to racquet_output.txt");
             System.out.println(err.getMessage());
-            err.printStackTrace();
 
         } finally {
             // close out the file if used
@@ -119,18 +122,28 @@ public class Inventory {
 
 
     // returns a Racquet object from a list of attributes
-    private static Racquet createRacquet(List<String> attributes) {
-        return new Racquet(
-                Integer.parseInt(attributes.get(0)),  // id
-                attributes.get(1),  // brand
-                attributes.get(2),  // model
-                Integer.parseInt(attributes.get(3)),  // weight
-                Integer.parseInt(attributes.get(4)),  // balance
-                Integer.parseInt(attributes.get(5)),  // stiffness
-                Integer.parseInt(attributes.get(6)),  // style
-                Integer.parseInt(attributes.get(7)),  // skill
-                Integer.parseInt(attributes.get(8))  // strength
-        );
+    public static Racquet createRacquet(List<String> attributes) throws NumberFormatException {
+        Racquet racquet = null;
+
+        try { // String values are converted to ints where appropriate.
+            racquet = new Racquet(
+                    Integer.parseInt(attributes.get(0)),  // id
+                    attributes.get(1),  // brand
+                    attributes.get(2),  // model
+                    Integer.parseInt(attributes.get(3)),  // weight
+                    Integer.parseInt(attributes.get(4)),  // balance
+                    Integer.parseInt(attributes.get(5)),  // stiffness
+                    Integer.parseInt(attributes.get(6)),  // style
+                    Integer.parseInt(attributes.get(7)),  // skill
+                    Integer.parseInt(attributes.get(8))  // strength
+            );
+        // if stored value cannot be cast into int
+        } catch (NumberFormatException err) {
+            System.out.println("Racquet data in Excel is corrupt.\n" +
+                    "Please make sure there is no text where numbers are supposed to be.\n");
+
+        }
+        return racquet;
     }
 
 
