@@ -1,4 +1,4 @@
-# Racquet Recommendation
+# Inventory and Recommendation System
 
 ### Description
 
@@ -22,4 +22,8 @@ This is a program developed as a term project for MET CS 526 at Boston Universit
 
 ### Running the program
 
-For now copy the project into your directory, and run the main() method. This section will be updated once data persistence and UI are developed.
+For now copy the project into your directory, and run the main() method from package com.han. This section will be updated once data persistence and UI are developed.
+
+For uploading inventory data via excel, follow the template provided in the static folder. Do not change the contents/order of the headers.
+
+Tests are located in the tests folder within the main project directory, and will be continuously updated as the project develops.
