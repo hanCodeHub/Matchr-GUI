@@ -1,6 +1,8 @@
 package com.han;
 
 
+import java.util.Scanner;
+
 public class Question {
     private String name;
     private String question;
@@ -26,6 +28,22 @@ public class Question {
     public int getHigh() {
         return high;
     }
+
+
+    // get answer to a question from user
+    public int getAnswer() {
+        Scanner scan = new Scanner(System.in);
+        int userInput;
+
+        // check that user value is within acceptable range of question
+        do {
+            System.out.println(this.getQuestion());
+            userInput = scan.nextInt();
+        } while (!this.isValidAnswer(userInput));
+
+        return userInput;
+    }
+
 
     // returns true if the provided answer is within valid range
     public Boolean isValidAnswer(int answer) {

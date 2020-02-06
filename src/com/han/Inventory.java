@@ -62,7 +62,9 @@ public class Inventory {
                     getCellValue(attributes, cell);
                 }
                 // create a new Racquet object from attributes
-                racquetList.add(createRacquet(attributes));
+                Racquet newRacquet = createRacquet(attributes);
+                if (newRacquet != null)
+                    racquetList.add(createRacquet(attributes));
             }
             System.out.println("Racquet inventory successfully updated in the database.\n");
         // if file does not exist
@@ -123,26 +125,36 @@ public class Inventory {
 
     // returns a Racquet object from a list of attributes
     public static Racquet createRacquet(List<String> attributes) throws NumberFormatException {
-        Racquet racquet = null;
+        Racquet racquet;
+        ListIterator<String> iter = attributes.listIterator();
 
         try { // String values are converted to ints where appropriate.
             racquet = new Racquet(
-                    Integer.parseInt(attributes.get(0)),  // id
-                    attributes.get(1),  // brand
-                    attributes.get(2),  // model
-                    Integer.parseInt(attributes.get(3)),  // weight
-                    Integer.parseInt(attributes.get(4)),  // balance
-                    Integer.parseInt(attributes.get(5)),  // stiffness
-                    Integer.parseInt(attributes.get(6)),  // style
-                    Integer.parseInt(attributes.get(7)),  // skill
-                    Integer.parseInt(attributes.get(8))  // strength
+                    Integer.parseInt(iter.next()),  // id
+                    iter.next(),  // brand
+                    iter.next()  // model
             );
+            // set remaining properties with validation setters
+            racquet.setWeight(Integer.parseInt(iter.next()));  // weight
+            racquet.setBalance(Integer.parseInt(iter.next()));  // balance
+            racquet.setStiffness(Integer.parseInt(iter.next()));  // stiffness
+            racquet.setStyle(Integer.parseInt(iter.next()));  // style
+            racquet.setSkill(Integer.parseInt(iter.next()));  // skill
+            racquet.setStrength(Integer.parseInt(iter.next()));  // strength
+
         // if stored value cannot be cast into int
         } catch (NumberFormatException err) {
-            System.out.println("Racquet data in Excel is corrupt.\n" +
+            System.out.println("Racquet data in Excel is invalid.\n" +
                     "Please make sure there is no text where numbers are supposed to be.\n");
+            racquet = null;
 
+        // if tried to set a field out of range
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() +
+                    "\nracquet will not be stored in inventory.");
+            racquet = null;
         }
+        // return null racquet if any validation fails to ensure database integrity
         return racquet;
     }
 

@@ -74,25 +74,11 @@ public abstract class Session {
     // asks the user each question in the list and returns answers as preferences
     private void askQuestions(List<Question> questions) {
         for (Question q : questions) {
-            int answer = getAnswer(q);
+            int answer = q.getAnswer();
             // each answer stored in preferences with corresponding question name
             preferences.put(q.getName(), answer);
         }
     }
-
-    // get answer to a question from user
-    private int getAnswer(Question question) {
-        int userInput;
-
-        // check that user value is within acceptable range of question
-        do {
-            System.out.println(question.getQuestion());
-            userInput = scan.nextInt();
-        } while (!question.isValidAnswer(userInput));
-
-        return userInput;
-    }
-
 
     // utility display methods
     private static void displayMenu() {
