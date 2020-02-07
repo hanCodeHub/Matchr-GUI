@@ -10,8 +10,10 @@ public abstract class Session {
     // PROTECTED ATTRIBUTES - USE IN CONCRETE CLASSES ONLY
     // list of questions to ask the user
     protected ArrayList<Question> questions = new ArrayList<>(3);
+
     // for storing user answers (int) to each question (String)
-    protected HashMap<String, Integer> preferences = new HashMap<>(3);
+    protected HashMap<String, Integer> answers = new HashMap<>(3);
+
     // utility for reading user input
     protected static Scanner scan = new Scanner(System.in);
 
@@ -76,7 +78,7 @@ public abstract class Session {
         for (Question q : questions) {
             int answer = q.getAnswer();
             // each answer stored in preferences with corresponding question name
-            preferences.put(q.getName(), answer);
+            answers.put(q.getName(), answer);
         }
     }
 
@@ -93,7 +95,7 @@ public abstract class Session {
 
     private void displayPreferences() {
         System.out.println("Finding a match with your preferences: " +
-                preferences.toString());
+                answers.toString());
     }
 
 }

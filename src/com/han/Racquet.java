@@ -2,6 +2,7 @@ package com.han;
 
 
 public class Racquet {
+
     // unique identifier and info
     private int id;
     private String brand;
@@ -17,12 +18,16 @@ public class Racquet {
     private int skill;      // 1 - 5
     private int strength;   // 1 - 5
 
+    // value for recommendation (lower is closer to user)
+    private int matchIndex;
+
     // This constructor used when reading inventory file
     public Racquet(int id, String brand, String model) {
         this.id = id;
         this.brand = brand;
         this.model = model;
     }
+
 
     // getters
     public int getId() {
@@ -52,9 +57,15 @@ public class Racquet {
     public int getStrength() {
         return strength;
     }
+    public int getMatchIndex() {return matchIndex; }
 
-    // setters ensure that specifications of new Racquets are within valid range
-    // if invalid, an error is thrown
+    // setters
+    public void setMatchIndex(int matchIndex) {
+        this.matchIndex = matchIndex;
+    }
+
+    // attribute setters ensure that specifications of new Racquets are within valid range
+    // if invalid, an error is thrown and handled by calling method
     public void setWeight(int weight) {
         if (weight >= 1 && weight <= 5)
             this.weight = weight;
@@ -96,6 +107,7 @@ public class Racquet {
         else throw new IllegalArgumentException("Provided strength is out of range for " +
                 this.getBrand() + " " + this.getModel());
     }
+
 
     @Override
     public String toString() {

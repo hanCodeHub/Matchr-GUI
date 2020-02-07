@@ -17,6 +17,7 @@ This is a program developed as a term project for MET CS 526 at Boston Universit
 
 * Java JDK 11
 * Apache POI for reading Excel files
+    * download here: https://poi.apache.org/download.html
 * JDBC API with SQL for storing data
 * JavaFX for basic UI
 
