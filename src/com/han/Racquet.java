@@ -1,7 +1,7 @@
 package com.han;
 
 
-public class Racquet {
+public class Racquet implements Recommendable {
 
     // unique identifier and info
     private int id;
@@ -12,6 +12,7 @@ public class Racquet {
     private int weight;     // 1 - 5
     private int balance;    // 1 - 10
     private int stiffness;  // 1 - 10
+    private float shaftDiameter;  // max 9.9mm
 
     // basic attributes
     private int style;      // 1 - 5

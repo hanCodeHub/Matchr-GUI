@@ -1,101 +1,80 @@
 package com.han;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
 
-public abstract class Session {
+public class Session {
 
-    // PROTECTED ATTRIBUTES - USE IN CONCRETE CLASSES ONLY
     // list of questions to ask the user
-    protected ArrayList<Question> questions = new ArrayList<>(3);
-
-    // for storing user answers (int) to each question (String)
-    protected HashMap<String, Integer> answers = new HashMap<>(3);
+    private Questions questions;
+    // list of answers from the user
+    private User user;
 
     // utility for reading user input
     protected static Scanner scan = new Scanner(System.in);
 
-    // obtains questions from concrete session classes
-    protected abstract List<Question> getQuestions();
+    public Session() {
+        this.questions = new Questions();
+        this.user = new User();
+    }
 
-    // tracks current session
-    private static Session session = null;
+    // initializes a session and returns a User with saved preferences
+    public User initSession() {
 
-
-    // returns a new session by having user select from menu options
-    public static void initSession() {
-        // track current session of the user
-
-        while(true) {
+        // loop the menu until choice 1 selected
+        boolean endMenu = false;
+        while(!endMenu) {
             displayMenu();
-
-            // handle menu choices. menu is reset if handler returns true
             int menuChoice = Session.scan.nextInt();
-            if (!handleChoices(menuChoice)) break;
+
+            // handle menu choices.
+            switch(menuChoice) {
+                case 0: // exit program
+                    System.exit(0);
+
+                case 1: // user chose to get a recommendation
+                    questions.askQuestions();
+                    endMenu = true; // exit menu
+                    break;
+
+                case 2: // update inventory with excel file and reset menu
+                    Inventory.updateInventory();
+                    break;
+
+                default: // if choice was not valid, reset menu
+            }
         }
-
-        // process user questions and display saved preferences
-        session.askQuestions(session.getQuestions());
-        session.displayPreferences();
-
-        // MORE CODE ADDED LATER TO MATCH PREFERENCES TO RECOMMENDATION
-        System.out.println("Searching for your ideal racquet...");
-    }
-
-    // handles the user menu choices based on the session above
-    // returns boolean to check if menu should be reset
-    private static Boolean handleChoices(int menuChoice) {
-
-        boolean reset = false;
-
-        switch(menuChoice) {
-            case 0: // exit program
-                System.exit(0);
-            case 1: // user chose basic questions
-                session = new BasicSession();
-                break;
-            case 2: // user chose advanced questions
-                session = new AdvancedSession();
-                // downcast to confirm user selection of advanced option
-                if (!((AdvancedSession) session).doubleCheck())
-                    session = new BasicSession();
-                break;
-            case 3: // update inventory with excel file and reset menu
-                Inventory.updateInventory();
-                reset = true;
-                break;
-            default: // if choice was not valid, reset menu
-                reset = true;
-        }
-        return reset;
+        saveUserPreferences(user);
+        return user;
     }
 
 
-    // asks the user each question in the list and returns answers as preferences
-    private void askQuestions(List<Question> questions) {
-        for (Question q : questions) {
-            int answer = q.getAnswer();
-            // each answer stored in preferences with corresponding question name
-            answers.put(q.getName(), answer);
-        }
+    // sets each preference of a given user object
+    // value will be 0 for non-answered specifications
+    public void saveUserPreferences(User user) {
+        user.setType(questions.getType().getAnswer());
+        user.setBrand(questions.getBrand().getAnswer());
+
+        user.setWeightPref(questions.getWeight().getAnswer());
+        user.setBalancePref(questions.getBalance().getAnswer());
+        user.setStiffnessPref(questions.getStiffness().getAnswer());
+
+        user.setSkillPref(questions.getSkill().getAnswer());
+        user.setStylePref(questions.getStyle().getAnswer());
+        user.setStrengthPref(questions.getStrength().getAnswer());
+
+        user.setShaftPref(questions.getShaftDiameter().getAnswer());
     }
 
-    // utility display methods
-    private static void displayMenu() {
+
+    // methods for displaying help text
+    private void displayMenu() {
         System.out.println(
                 "\nEnter a number from the following menu options:\n" +
                 "0. Quit the program\n" +
-                "1. Ask me basic questions based on personal preferences\n" +
-                "2. Ask me advanced questions based on racquet specifications\n" +
+                "1. Ask me questions to make a recommendation\n" +
                 "3. Update inventory of racquets with input from excel file\n"
         );
     }
 
-    private void displayPreferences() {
-        System.out.println("Finding a match with your preferences: " +
-                answers.toString());
-    }
 
 }

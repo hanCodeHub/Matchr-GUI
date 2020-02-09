@@ -1,11 +1,14 @@
 package com.han;
 
-import java.util.HashMap;
 
 // holds user info and preferences
 public class User {
 
-    // advanced preferences
+    // text preferences
+    private String brand;  // preferred brand
+    private String type;  // preferred racquet type
+
+    // advanced attributes
     private int weightPref;     // 1 - 5
     private int balancePref;    // 1 - 10
     private int stiffnessPref;  // 1 - 10
@@ -15,10 +18,18 @@ public class User {
     private int skillPref;      // 1 - 5
     private int strengthPref;   // 1 - 5
 
-    // preferences contains user answers obtained from Session
-    private HashMap<String, Integer> preferences;
+    // special attributes
+    private float shaftPref;  // badminton racquets
+
+    // Only default constructor used
 
     // getters
+    public String getBrand() {
+        return brand;
+    }
+    public String getType() {
+        return type;
+    }
     public int getWeightPref() {
         return weightPref;
     }
@@ -37,17 +48,17 @@ public class User {
     public int getStrengthPref() {
         return strengthPref;
     }
-
-
-    // sets the correct preference by switching on the name
-    private void setPreference(String name, int value) {
-        // user may have any combination of preferences selected
-        switch (name) {
-            
-        }
+    public float getShaftPref() {
+        return shaftPref;
     }
 
     // setters
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+    public void setType(String type) {
+        this.type = type;
+    }
     public void setWeightPref(int weightPref) {
         this.weightPref = weightPref;
     }
@@ -65,5 +76,22 @@ public class User {
     }
     public void setStrengthPref(int strengthPref) {
         this.strengthPref = strengthPref;
+    }
+    public void setShaftPref(float shaftPref) {
+        this.shaftPref = shaftPref;
+    }
+
+    @Override
+    public String toString() {
+        return "User preferred values:" +
+                "\nbrand = " + brand +
+                "\ntype = " + type +
+                "\nweight = " + weightPref +
+                "\nbalancePref = " + balancePref +
+                "\nstiffnessPref = " + stiffnessPref +
+                "\nstylePref = " + stylePref +
+                "\nskillPref = " + skillPref +
+                "\nstrengthPref = " + strengthPref +
+                "\nshaftPref = " + shaftPref;
     }
 }
