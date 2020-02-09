@@ -55,7 +55,9 @@ public class Questions {
         );
 
         this.shaftDiameter = new Question<>("shaftDiameter",
-                "Enter a number in mm for your maximum preferred shaft diameter.");
+                "Enter a number up to 9.0 in mm" +
+                        " for your maximum preferred shaft diameter.",
+                1.0F, 9.0F);
 
     }
 
@@ -84,7 +86,6 @@ public class Questions {
     public Question<Integer> getBalance() {
         return balance;
     }
-
     public Question<Float> getShaftDiameter() {
         return shaftDiameter;
     }

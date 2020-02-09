@@ -9,5 +9,6 @@ public class Main {
         Session session = new Session();
         User user = session.initSession();
 
+        System.out.println(user.toString());
     }
 }

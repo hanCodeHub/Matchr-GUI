@@ -72,7 +72,7 @@ public class Session {
                 "\nEnter a number from the following menu options:\n" +
                 "0. Quit the program\n" +
                 "1. Ask me questions to make a recommendation\n" +
-                "3. Update inventory of racquets with input from excel file\n"
+                "2. Update inventory of racquets with input from excel file\n"
         );
     }
 

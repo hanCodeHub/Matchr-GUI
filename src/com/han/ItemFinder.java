@@ -4,7 +4,7 @@ package com.han;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-// Generic class that will find any type of Racquet
+// Generic class that will find any type of Recommendable item
 public class ItemFinder<T extends Recommendable> {
 
     // comparator class used for ordering racquets based on matchIndex
@@ -23,7 +23,7 @@ public class ItemFinder<T extends Recommendable> {
 
     // properties for recommending matching racquets
     private int listings;               // number of recommended listings
-    private PriorityQueue<Racquet> results;   // stores matched racquets
+    private PriorityQueue<T> results;   // stores matched items
 
 
 

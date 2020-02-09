@@ -12,7 +12,7 @@ public class Racquet implements Recommendable {
     private int weight;     // 1 - 5
     private int balance;    // 1 - 10
     private int stiffness;  // 1 - 10
-    private float shaftDiameter;  // max 9.9mm
+    private float shaftDiameter;  // max 9.0mm
 
     // basic attributes
     private int style;      // 1 - 5
@@ -58,6 +58,8 @@ public class Racquet implements Recommendable {
     public int getStrength() {
         return strength;
     }
+    public float getShaftDiameter() { return shaftDiameter;}
+
     public int getMatchIndex() {return matchIndex; }
 
     // setters
@@ -65,48 +67,48 @@ public class Racquet implements Recommendable {
         this.matchIndex = matchIndex;
     }
 
-    // attribute setters ensure that specifications of new Racquets are within valid range
+    // validateAttr ensures that attributes of new Racquets are between low and high
     // if invalid, an error is thrown and handled by calling method
+    private <T extends Comparable<T>> boolean validateAttr(T attribute, T low, T high)
+        throws IllegalArgumentException {
+        if (attribute.compareTo(low) > 0 && attribute.compareTo(high) < 0)
+            return true;
+        else throw new IllegalArgumentException("provided value is out of range");
+    }
+
     public void setWeight(int weight) {
-        if (weight >= 1 && weight <= 5)
+        if (validateAttr(weight, 0, 6))
             this.weight = weight;
-        else throw new IllegalArgumentException("Provided weight is out of range for " +
-                this.getBrand() + " " + this.getModel());
     }
 
     public void setBalance(int balance) {
-        if (balance >= 1 && balance <= 10)
+        if (validateAttr(balance, 0, 11))
             this.balance = balance;
-        else throw new IllegalArgumentException("Provided balance is out of range for " +
-                this.getBrand() + " " + this.getModel());
     }
 
     public void setStiffness(int stiffness) {
-        if (stiffness >= 1 && stiffness <= 10)
+        if (validateAttr(stiffness, 0, 11))
             this.stiffness = stiffness;
-        else throw new IllegalArgumentException("Provided stiffness is out of range for " +
-                this.getBrand() + " " + this.getModel());
     }
 
     public void setStyle(int style) {
-        if (style >= 1 && style <= 5)
+        if (validateAttr(style, 0, 6))
             this.style = style;
-        else throw new IllegalArgumentException("Provided style is out of range for " +
-                this.getBrand() + " " + this.getModel());
     }
 
     public void setSkill(int skill) {
-        if (skill >= 1 && skill <= 5)
+        if (validateAttr(skill, 0, 6))
             this.skill = skill;
-        else throw new IllegalArgumentException("Provided skill is out of range for " +
-                this.getBrand() + " " + this.getModel());
     }
 
     public void setStrength(int strength) {
-        if (strength >= 1 && strength <= 5)
+        if (validateAttr(strength, 0, 6))
             this.strength = strength;
-        else throw new IllegalArgumentException("Provided strength is out of range for " +
-                this.getBrand() + " " + this.getModel());
+    }
+
+    public void setShaftDiameter(float diameter) {
+        if (validateAttr(diameter, 0.0F, 9.0F))
+            this.shaftDiameter = diameter;
     }
 
 

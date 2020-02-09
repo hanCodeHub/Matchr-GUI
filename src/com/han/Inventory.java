@@ -141,6 +141,7 @@ public class Inventory {
             racquet.setStyle(Integer.parseInt(iter.next()));  // style
             racquet.setSkill(Integer.parseInt(iter.next()));  // skill
             racquet.setStrength(Integer.parseInt(iter.next()));  // strength
+            racquet.setShaftDiameter(Float.parseFloat(iter.next())); // shaftDiameter
 
         // if stored value cannot be cast into int
         } catch (NumberFormatException err) {
@@ -173,17 +174,6 @@ public class Inventory {
             attributes.add(String.valueOf((int) cell.getNumericCellValue()));
         else
             throw new InputMismatchException("cells can only have numeric or text values!");
-    }
-
-
-    // FOR DEBUGGING ONLY
-    // returns the column header value of a given cell within a given worksheet
-    private static String getColumnHeader(XSSFSheet sheet, Cell cell) {
-        // get the correct cell within header row
-        Cell headerCell = sheet.getRow(0).getCell(cell.getColumnIndex());
-
-        // return value of the headerCell
-        return headerCell.getRichStringCellValue().toString();
     }
 
 }
