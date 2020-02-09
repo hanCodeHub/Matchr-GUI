@@ -9,7 +9,6 @@ public class Question <T extends Comparable<T>> {
     private String question;  // question text
     private T low;  // lower limit for numeric answer
     private T high;  // upper limit for numeric answer
-
     private T answer;  // answer type is dependent on question
 
     // constructor for questions requesting a text input

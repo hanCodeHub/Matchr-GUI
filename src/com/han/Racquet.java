@@ -7,6 +7,7 @@ public class Racquet implements Recommendable {
     private int id;
     private String brand;
     private String model;
+    private String type;
 
     // advanced attributes
     private int weight;     // 1 - 5
@@ -29,6 +30,59 @@ public class Racquet implements Recommendable {
         this.model = model;
     }
 
+    // constructor for testing
+    public Racquet(int id, String brand, String model, String type,
+                   int weight, int balance, int stiffness, float shaftDiameter,
+                   int style, int skill, int strength) {
+        this.id = id;
+        this.brand = brand;
+        this.model = model;
+        this.type = type;
+        this.weight = weight;
+        this.balance = balance;
+        this.stiffness = stiffness;
+        this.shaftDiameter = shaftDiameter;
+        this.style = style;
+        this.skill = skill;
+        this.strength = strength;
+    }
+
+    // calculates the matchIndex as it relates to the user
+    // returns the total difference of each value between Racquet and User
+    public double calcMatchIndex(User user) {
+        Number[] vals = new Number[7];
+        double total = 0;
+
+        // save the difference between each value
+        // if user does not have preference, ignore the diff: set to 0
+        int userPref = user.getBalancePref();
+        vals[0] = userPref > 0 ? Math.abs(userPref - getBalance()) : 0;
+
+        userPref = user.getWeightPref();
+        vals[1] = userPref > 0 ? Math.abs(userPref - getWeight()) : 0;
+
+        userPref = user.getStiffnessPref();
+        vals[2] = userPref > 0 ? Math.abs(userPref - getStiffness()) : 0;
+
+        userPref = user.getSkillPref();
+        vals[3] = userPref > 0 ? Math.abs(userPref - getSkill()) : 0;
+
+        userPref = user.getStrengthPref();
+        vals[4] = userPref > 0 ? Math.abs(user.getStrengthPref() - getStrength()) : 0;
+
+        userPref = user.getStylePref();
+        vals[5] = userPref > 0 ? Math.abs(user.getStylePref() - getStyle()) : 0;
+
+        float userPref1 = user.getShaftPref();
+        vals[6] = userPref1 > 0 ? Math.abs(user.getShaftPref() - getShaftDiameter()) : 0;
+
+        // adds up all the differences and returns the total
+        for (Number val : vals) {
+            total += val.doubleValue();
+        }
+        return total;
+    }
+
 
     // getters
     public int getId() {
@@ -37,6 +91,7 @@ public class Racquet implements Recommendable {
     public String getBrand() {
         return brand;
     }
+    public String getType() {return type; }
     public String getModel() {
         return model;
     }

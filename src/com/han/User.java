@@ -21,7 +21,23 @@ public class User {
     // special attributes
     private float shaftPref;  // badminton racquets
 
-    // Only default constructor used
+    // default constructor used when reading files
+    public User() {};
+
+    // constructor for testing
+    public User(String brand, String type,
+                int weightPref, int balancePref, int stiffnessPref,
+                int stylePref, int skillPref, int strengthPref, float shaftPref) {
+        this.brand = brand;
+        this.type = type;
+        this.weightPref = weightPref;
+        this.balancePref = balancePref;
+        this.stiffnessPref = stiffnessPref;
+        this.stylePref = stylePref;
+        this.skillPref = skillPref;
+        this.strengthPref = strengthPref;
+        this.shaftPref = shaftPref;
+    }
 
     // getters
     public String getBrand() {
