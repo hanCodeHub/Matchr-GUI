@@ -7,7 +7,7 @@ import java.util.*;
 public class ItemFinder<T extends Recommendable> {
 
     // comparator class used for ordering racquets based on matchIndex
-    public static class ItemComparator implements Comparator<Recommendable> {
+    private static class ItemComparator implements Comparator<Recommendable> {
         @Override
         public int compare(Recommendable x, Recommendable y) {
 
@@ -31,6 +31,7 @@ public class ItemFinder<T extends Recommendable> {
         // matchIndex comparator used as key in PriorityQueue
         this.orderedItems = new PriorityQueue<>(new ItemComparator());
     }
+
 
     // ranks items by priority in the results PQueue
     public void rankItems(List<T> items) {
@@ -68,6 +69,8 @@ public class ItemFinder<T extends Recommendable> {
         return orderedItems.poll();
     }
 
+
+    // METHODS TO BE USED IN LATER BUILDS - need support for quantity input
 
     // returns a list of top results of a given quantity
     public List<T> getResults(int quantity) {

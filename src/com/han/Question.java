@@ -68,9 +68,10 @@ public class Question <T extends Comparable<T>> {
         System.out.println(this.getQuestion());
         return scan.nextFloat();
     }
-    // END READING METHODS
+    // END TEMP READING METHODS
 
 
+    // VALIDATORS TO BE USED AFTER IMPLEMENTING UI
     // returns true if the answer is one word with alphabetic chars
     public Boolean validateText(String input) {
         return input.matches("[a-zA-Z]+");

@@ -10,10 +10,19 @@ public class QuestionTest {
 
     @Test
     public void isWithinRange() {
-        assertEquals(true, testQ.isWithinRange(6));
-        assertEquals(true, testQ.isWithinRange(5));
-        assertEquals(true, testQ.isWithinRange(10));
-        assertEquals(false, testQ.isWithinRange(11));
-        assertEquals(false, testQ.isWithinRange(4));
+        // test that only values between low and high return true
+        assertTrue(testQ.isWithinRange(6));
+        assertTrue(testQ.isWithinRange(5));
+        assertTrue(testQ.isWithinRange(10));
+        assertFalse(testQ.isWithinRange(11));
+        assertFalse(testQ.isWithinRange(4));
+    }
+
+    @Test
+    public void validateText() {
+        // test that only one single word with alphabetic chars return true
+        assertTrue(testQ.validateText("testWord"));
+        assertFalse(testQ.validateText("test word"));
+        assertFalse(testQ.validateText("test123"));
     }
 }

@@ -28,4 +28,17 @@ public class RacquetTest {
         testUserEmpty.setShaftPref(8.1F);
         assertEquals(6.3, testRac.calcMatchIndex(testUserEmpty), 0.05);
     }
+
+    @Test
+    public void validateAttr() {
+        // test for values that are allowed as a racquet attribute
+        assertTrue(testRac.validateAttr(3, 1, 5));
+        assertTrue(testRac.validateAttr(1, 1, 5));
+        assertTrue(testRac.validateAttr(5, 1, 5));
+        assertTrue(testRac.validateAttr(3.5F, 1.0F, 8.8F));
+
+        // not allowed
+        assertFalse(testRac.validateAttr(11, 1, 10));
+        assertFalse(testRac.validateAttr(3.3F, 6.6F, 10.0F));
+    }
 }

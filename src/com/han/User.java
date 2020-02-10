@@ -20,10 +20,10 @@ public class User {
     // special attributes
     private float shaftPref;  // badminton racquets
 
-    // default constructor used when reading files
+    // default constructor used when reading input
     public User() {}
 
-    // constructor for testing
+    // constructor for testing with prebuilt preferences
     public User(String brand,
                 int weightPref, int balancePref, int stiffnessPref,
                 int stylePref, int skillPref, int strengthPref, float shaftPref) {

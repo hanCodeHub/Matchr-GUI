@@ -46,7 +46,7 @@ public class Racquet implements Recommendable {
     }
 
     // calculates the matchIndex as it relates to the user
-    // returns the total difference of each value between Racquet and User
+    // formula: total difference of each value between Racquet and User
     public double calcMatchIndex(User user) {
         Number[] vals = new Number[7];
         double total = 0;
@@ -54,34 +54,28 @@ public class Racquet implements Recommendable {
         // save the difference between each value
         // if user does not have preference, ignore the diff: set to 0
         int userPref = user.getBalancePref();
-        vals[0] = userPref > 0 ? Math.abs(userPref - getBalance()) : 0;
-
+            vals[0] = userPref > 0 ? Math.abs(userPref - getBalance()) : 0;
         userPref = user.getWeightPref();
-        vals[1] = userPref > 0 ? Math.abs(userPref - getWeight()) : 0;
-
+            vals[1] = userPref > 0 ? Math.abs(userPref - getWeight()) : 0;
         userPref = user.getStiffnessPref();
-        vals[2] = userPref > 0 ? Math.abs(userPref - getStiffness()) : 0;
-
+            vals[2] = userPref > 0 ? Math.abs(userPref - getStiffness()) : 0;
         userPref = user.getSkillPref();
-        vals[3] = userPref > 0 ? Math.abs(userPref - getSkill()) : 0;
-
+            vals[3] = userPref > 0 ? Math.abs(userPref - getSkill()) : 0;
         userPref = user.getStrengthPref();
-        vals[4] = userPref > 0 ? Math.abs(user.getStrengthPref() - getStrength()) : 0;
-
+            vals[4] = userPref > 0 ? Math.abs(user.getStrengthPref() - getStrength()) : 0;
         userPref = user.getStylePref();
-        vals[5] = userPref > 0 ? Math.abs(user.getStylePref() - getStyle()) : 0;
-
+            vals[5] = userPref > 0 ? Math.abs(user.getStylePref() - getStyle()) : 0;
         float userShaftPref = user.getShaftPref();
-        vals[6] = userShaftPref > 0 ? Math.abs(user.getShaftPref() - getShaftDiameter()) : 0;
+            vals[6] = userShaftPref > 0 ? Math.abs(user.getShaftPref() - getShaftDiameter()) : 0;
 
-        // adds up all the differences and returns the total
+        // adds up all the differences to total
         for (Number val : vals) {
             total += val.doubleValue();
         }
+        // save matchIndex and return it
         setMatchIndex(total);
         return total;
     }
-
 
 
     // getters
@@ -115,56 +109,59 @@ public class Racquet implements Recommendable {
     public float getShaftDiameter() { return shaftDiameter;}
 
     public double getMatchIndex() {return matchIndex; }
-
-    // setters
     public void setMatchIndex(double matchIndex) {
         this.matchIndex = matchIndex;
     }
 
     // validateAttr ensures that attributes of new Racquets are between low and high
-    // if invalid, an error is thrown and handled by calling method
-    private <T extends Comparable<T>> boolean validateAttr(T attribute, T low, T high)
+    // if invalid, the attribute will not be set by the setter
+    public <T extends Comparable<T>> boolean validateAttr(T attribute, T low, T high)
         throws IllegalArgumentException {
-        if (attribute.compareTo(low) > 0 && attribute.compareTo(high) < 0)
+
+        // if attribute is at the edge of low or high
+        if (attribute.compareTo(low) == 0 || attribute.compareTo(high) == 0)
             return true;
-        else throw new IllegalArgumentException("provided value is out of range");
+
+        // if attribute is between low and high
+        else return attribute.compareTo(low) > 0 && attribute.compareTo(high) < 0;
     }
 
+    // attribute setters only work if provided values can be validated
+
     public void setWeight(int weight) {
-        if (validateAttr(weight, 0, 6))
+        if (validateAttr(weight, 1, 5))
             this.weight = weight;
     }
 
     public void setBalance(int balance) {
-        if (validateAttr(balance, 0, 11))
+        if (validateAttr(balance, 1, 10))
             this.balance = balance;
     }
 
     public void setStiffness(int stiffness) {
-        if (validateAttr(stiffness, 0, 11))
+        if (validateAttr(stiffness, 1, 10))
             this.stiffness = stiffness;
     }
 
     public void setStyle(int style) {
-        if (validateAttr(style, 0, 6))
+        if (validateAttr(style, 1, 5))
             this.style = style;
     }
 
     public void setSkill(int skill) {
-        if (validateAttr(skill, 0, 6))
+        if (validateAttr(skill, 1, 5))
             this.skill = skill;
     }
 
     public void setStrength(int strength) {
-        if (validateAttr(strength, 0, 6))
+        if (validateAttr(strength, 1, 5))
             this.strength = strength;
     }
 
     public void setShaftDiameter(float diameter) {
-        if (validateAttr(diameter, 0.0F, 9.0F))
+        if (validateAttr(diameter, 6.0F, 9.9F))
             this.shaftDiameter = diameter;
     }
-
 
     @Override
     public String toString() {
