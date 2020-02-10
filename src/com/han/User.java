@@ -6,7 +6,6 @@ public class User {
 
     // text preferences
     private String brand;  // preferred brand
-    private String type;  // preferred racquet type
 
     // advanced attributes
     private int weightPref;     // 1 - 5
@@ -22,14 +21,13 @@ public class User {
     private float shaftPref;  // badminton racquets
 
     // default constructor used when reading files
-    public User() {};
+    public User() {}
 
     // constructor for testing
-    public User(String brand, String type,
+    public User(String brand,
                 int weightPref, int balancePref, int stiffnessPref,
                 int stylePref, int skillPref, int strengthPref, float shaftPref) {
         this.brand = brand;
-        this.type = type;
         this.weightPref = weightPref;
         this.balancePref = balancePref;
         this.stiffnessPref = stiffnessPref;
@@ -42,9 +40,6 @@ public class User {
     // getters
     public String getBrand() {
         return brand;
-    }
-    public String getType() {
-        return type;
     }
     public int getWeightPref() {
         return weightPref;
@@ -72,9 +67,6 @@ public class User {
     public void setBrand(String brand) {
         this.brand = brand;
     }
-    public void setType(String type) {
-        this.type = type;
-    }
     public void setWeightPref(int weightPref) {
         this.weightPref = weightPref;
     }
@@ -101,7 +93,6 @@ public class User {
     public String toString() {
         return "User preferred values:" +
                 "\nbrand = " + brand +
-                "\ntype = " + type +
                 "\nweight = " + weightPref +
                 "\nbalancePref = " + balancePref +
                 "\nstiffnessPref = " + stiffnessPref +

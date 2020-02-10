@@ -23,16 +23,17 @@ public class Inventory {
 
 
     // returns the list of racquets to client program after reading input file
-    public static ArrayList<Racquet> updateInventory() {
+    public static void updateInventory() {
         readFromExcel();
 
         // provides receipt by printing basic summary of inventory to txt file
         writeToText();
-
-        // returned value will be used to match with recommendations in future releases
-        return racquetList;
     }
 
+    // returns the inventory of racquets to be used for recommendations
+    public static ArrayList<Racquet> getInventory() {
+        return racquetList;
+    }
 
     // reads inventory data from excel file of given file path
     // then populates the racquetList with Racquet objects

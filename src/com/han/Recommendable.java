@@ -8,8 +8,7 @@ public interface Recommendable {
     // matchIndex: a way of calculating its similarity to the user
 
     String getBrand();
-    String getType();
 
-    int getMatchIndex();
+    double getMatchIndex();
     double calcMatchIndex(User user);
 }

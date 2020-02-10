@@ -6,11 +6,11 @@ import static org.junit.Assert.*;
 
 public class RacquetTest {
 
-    Racquet testRac = new Racquet(1, "testBrand", "testModel", "speed",
+    Racquet testRac = new Racquet(1, "testBrand", "testModel",
             3, 4, 5, 6.8F, 3, 5, 4
             );
 
-    User testUser = new User("testBrand", "speed",
+    User testUser = new User("testBrand",
             3, 5, 8,
             4, 2, 5, 7.6F);
 

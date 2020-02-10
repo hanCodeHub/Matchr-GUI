@@ -7,7 +7,6 @@ public class Racquet implements Recommendable {
     private int id;
     private String brand;
     private String model;
-    private String type;
 
     // advanced attributes
     private int weight;     // 1 - 5
@@ -21,7 +20,7 @@ public class Racquet implements Recommendable {
     private int strength;   // 1 - 5
 
     // value for recommendation (lower is closer to user)
-    private int matchIndex;
+    private double matchIndex;
 
     // This constructor used when reading inventory file
     public Racquet(int id, String brand, String model) {
@@ -31,13 +30,12 @@ public class Racquet implements Recommendable {
     }
 
     // constructor for testing
-    public Racquet(int id, String brand, String model, String type,
+    public Racquet(int id, String brand, String model,
                    int weight, int balance, int stiffness, float shaftDiameter,
                    int style, int skill, int strength) {
         this.id = id;
         this.brand = brand;
         this.model = model;
-        this.type = type;
         this.weight = weight;
         this.balance = balance;
         this.stiffness = stiffness;
@@ -73,15 +71,17 @@ public class Racquet implements Recommendable {
         userPref = user.getStylePref();
         vals[5] = userPref > 0 ? Math.abs(user.getStylePref() - getStyle()) : 0;
 
-        float userPref1 = user.getShaftPref();
-        vals[6] = userPref1 > 0 ? Math.abs(user.getShaftPref() - getShaftDiameter()) : 0;
+        float userShaftPref = user.getShaftPref();
+        vals[6] = userShaftPref > 0 ? Math.abs(user.getShaftPref() - getShaftDiameter()) : 0;
 
         // adds up all the differences and returns the total
         for (Number val : vals) {
             total += val.doubleValue();
         }
+        setMatchIndex(total);
         return total;
     }
+
 
 
     // getters
@@ -91,7 +91,6 @@ public class Racquet implements Recommendable {
     public String getBrand() {
         return brand;
     }
-    public String getType() {return type; }
     public String getModel() {
         return model;
     }
@@ -115,10 +114,10 @@ public class Racquet implements Recommendable {
     }
     public float getShaftDiameter() { return shaftDiameter;}
 
-    public int getMatchIndex() {return matchIndex; }
+    public double getMatchIndex() {return matchIndex; }
 
     // setters
-    public void setMatchIndex(int matchIndex) {
+    public void setMatchIndex(double matchIndex) {
         this.matchIndex = matchIndex;
     }
 

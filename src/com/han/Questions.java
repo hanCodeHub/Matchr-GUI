@@ -3,7 +3,6 @@ package com.han;
 public class Questions {
 
     // questions for all racquets
-    private Question<String> type;
     private Question<String> brand;
     private Question<Integer> style;
     private Question<Integer> skill;
@@ -16,8 +15,6 @@ public class Questions {
 
     // AdvancedSession initializes questions based on racquet specifications
     public Questions() {
-        this.type = new Question<>("type",
-                "What type of racquet are you looking for?");
 
         this.brand = new Question<>("brand",
                 "Enter the name of your favorite brand");
@@ -62,9 +59,6 @@ public class Questions {
     }
 
     // getters for Question objects
-    public Question<String> getType() {
-        return type;
-    }
     public Question<String> getBrand() {
         return brand;
     }
@@ -92,16 +86,15 @@ public class Questions {
 
     // read and set answers to all general questions
     public void askQuestions() {
-        type.setAnswer(type.readTxtAnswer());
         brand.setAnswer(brand.readTxtAnswer());
 
         style.setAnswer(style.readIntAnswer());
         skill.setAnswer(skill.readIntAnswer());
         strength.setAnswer(strength.readIntAnswer());
-
         weight.setAnswer(weight.readIntAnswer());
         stiffness.setAnswer(stiffness.readIntAnswer());
         balance.setAnswer(balance.readIntAnswer());
+
         shaftDiameter.setAnswer(shaftDiameter.readFloatAnswer());
     }
 
