@@ -1,4 +1,4 @@
-package com.han;
+package Matchr_App;
 
 import org.junit.Test;
 
@@ -21,7 +21,7 @@ public class RacquetTest {
         // for testing a user with all values selected
         assertEquals(9.8, testRac.calcMatchIndex(testUser), 0.05);
 
-        // for testing a user with some values selected - diffs should be ignored
+        // for testing a user with some values selected
         testUserEmpty.setStrengthPref(2);
         testUserEmpty.setStylePref(4);
         testUserEmpty.setSkillPref(3);

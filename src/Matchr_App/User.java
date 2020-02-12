@@ -1,4 +1,4 @@
-package com.han;
+package Matchr_App;
 
 
 // holds user info and preferences

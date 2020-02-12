@@ -1,4 +1,4 @@
-package com.han;
+package Matchr_App;
 
 import java.util.*;
 
@@ -45,7 +45,6 @@ public class ItemFinder<T extends Recommendable> {
             item.calcMatchIndex(user);
             orderedItems.add(item);
         }
-
     }
 
     // filters items by specific brand - other brands removed from consideration

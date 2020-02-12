@@ -1,4 +1,4 @@
-package com.han;
+package Matchr_App;
 
 public interface Recommendable {
 

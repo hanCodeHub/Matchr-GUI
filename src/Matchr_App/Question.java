@@ -1,4 +1,4 @@
-package com.han;
+package Matchr_App;
 
 
 import java.util.Scanner;
