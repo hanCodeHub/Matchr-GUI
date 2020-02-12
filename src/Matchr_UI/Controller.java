@@ -1,5 +1,8 @@
 package Matchr_UI;
 
+import Matchr_App.Inventory;
+import Matchr_App.ItemFinder;
+import Matchr_App.Racquet;
 import Matchr_App.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -48,7 +51,7 @@ public class Controller {
 
     // Event handlers
 
-    // reset method for clearing all the controls on reset
+    // reset method for returning all the controls to default
     private void handleReset() {
         getBrand().clear();
         getWeight().getValueFactory().setValue(1);
@@ -72,7 +75,14 @@ public class Controller {
                 getStrength().getValue(),
                 (float) getShaftDiameter().getValue()
         );
-        System.out.println(user);
+
+        // search inventory for matching racquet for the user
+        ItemFinder<Racquet> racquetFinder = new ItemFinder<>(user);
+        racquetFinder.rankItems(Inventory.getInventory());
+
+        // display the recommendation
+        Racquet result = racquetFinder.getTopResult();
+        System.out.println("\nRecommended for you:\n" + result);
     }
 
 
