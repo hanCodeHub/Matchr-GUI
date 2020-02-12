@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+// USE ONLY WHEN RUNNING APP WITH UI
 public class JavaFX_App extends Application {
 
     @Override
@@ -15,7 +16,6 @@ public class JavaFX_App extends Application {
         primaryStage.setScene(new Scene(root, 700, 700));
         primaryStage.show();
     }
-
 
     public static void main(String[] args) {
         launch(args);

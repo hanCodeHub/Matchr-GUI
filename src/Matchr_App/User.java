@@ -94,11 +94,11 @@ public class User {
         return "User preferred values:" +
                 "\nbrand = " + brand +
                 "\nweight = " + weightPref +
-                "\nbalancePref = " + balancePref +
-                "\nstiffnessPref = " + stiffnessPref +
-                "\nstylePref = " + stylePref +
-                "\nskillPref = " + skillPref +
-                "\nstrengthPref = " + strengthPref +
-                "\nshaftPref = " + shaftPref;
+                "\nbalance = " + balancePref +
+                "\nstiffness = " + stiffnessPref +
+                "\nstyle = " + stylePref +
+                "\nskill = " + skillPref +
+                "\nstrength = " + strengthPref +
+                "\nshaft = " + shaftPref;
     }
 }

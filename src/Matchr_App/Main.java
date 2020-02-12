@@ -1,6 +1,7 @@
 package Matchr_App;
 
 
+// USE ONLY WHEN NOT RUNNING PROGRAM WITH UI
 public class Main {
 
     public static void main(String[] args) {

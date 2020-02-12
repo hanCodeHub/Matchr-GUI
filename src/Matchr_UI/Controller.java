@@ -1,5 +1,6 @@
 package Matchr_UI;
 
+import Matchr_App.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -39,7 +40,7 @@ public class Controller {
     public void onSubmit(ActionEvent e) {
         // recommend
         if (e.getSource().equals(recommendBtn))
-            handleToString();
+            handleRec();
         // reset
         else if (e.getSource().equals(resetBtn))
             handleReset();
@@ -59,18 +60,21 @@ public class Controller {
         getShaftDiameter().setValue(7.5);
     }
 
-    // toString method for testing user input on submit
-    private void handleToString() {
-        System.out.println("User selected: " +
-                "\nbrand: " + getBrand().getText() +
-                "\nweight: " + getWeight().getValue() +
-                "\nbalance: " + getBalance().getValue() +
-                "\nstiffness: " + getStiffness().getValue() +
-                "\nstyle: " + getStyle().getValue() +
-                "\nskill: " + getSkill().getValue() +
-                "\nstrength: " + getStrength().getValue() +
-                "\nshaft: " + getShaftDiameter().getValue());
+    // recommend method for processing user request
+    private void handleRec() {
+        User user = new User(
+                getBrand().getText(),
+                getWeight().getValue(),
+                getBalance().getValue(),
+                getStiffness().getValue(),
+                getStyle().getValue(),
+                getSkill().getValue(),
+                getStrength().getValue(),
+                (float) getShaftDiameter().getValue()
+        );
+        System.out.println(user);
     }
+
 
     // getters
     public TextField getBrand() {
