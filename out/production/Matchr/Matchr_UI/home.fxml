@@ -18,7 +18,6 @@
             xmlns:fx="http://javafx.com/fxml" >
 
     <top>
-        <!-- Header -->
         <VBox alignment="CENTER">
             <Label text="Welcome to Matchr!"
                    BorderPane.alignment="CENTER"
@@ -30,6 +29,7 @@
                   style="-fx-font-size: 17; -fx-font-family: Helvetica;
                   -fx-wrap-text: true; -fx-alignment: center" />
         </VBox>
+
 
     </top>
 

@@ -13,13 +13,17 @@ This is a program developed as a term project for MET CS 526 at Boston Universit
 3. Sort racquet data by lowest total distance, which indicates greatest similarity
 4. Output top recommendations
 
-**Tools**
+**Tools/Dependencies**
 
 * Java JDK 11
 * Apache POI for reading Excel files
     * download here: https://poi.apache.org/download.html
 * JDBC API with SQL for storing data
 * JavaFX for basic UI
+    * download here: https://gluonhq.com/products/javafx/
+    * For JDK 11 users, JavaFX has to be configured: https://www.jetbrains.com/help/idea/javafx.html
+* Java look and feel graphics repo from oracle
+    * https://www.oracle.com/technetwork/java/index-138612.html
 
 ### Running the program
 
