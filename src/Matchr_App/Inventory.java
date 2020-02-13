@@ -33,9 +33,9 @@ public class Inventory {
         writeToText();
     }
 
-    // returns the inventory of racquets to be used for recommendations
+    // returns a copy of inventory of racquets to be used for recommendations
     public static ArrayList<Racquet> getInventory() {
-        return racquetList;
+        return new ArrayList<>(racquetList);
     }
 
     // reads inventory data from excel file of given file path

@@ -41,38 +41,38 @@ public class ItemFinder<T extends Recommendable> {
             filterBrand(items);
 
         // save match index on each item and add item to PQueue
-        for (T item : items) {
+        items.forEach(item -> {
             item.calcMatchIndex(user);
             orderedItems.add(item);
-        }
+        });
+
     }
 
     // filters items by specific brand - other brands removed from consideration
     private void filterBrand (List<T> items) {
 
-        // check if there is an item with user preferred brand
+        // check if user preferred brand exists amongst available items
         String userBrand = user.getBrand().toLowerCase();
-        boolean brandExists = false;
-        for (T item : items) {
-            if (item.getBrand().toLowerCase().equals(userBrand))
-                brandExists = true;
-        }
+        boolean brandExists = items.stream()
+                .anyMatch(item -> item.getBrand().toLowerCase().equals(userBrand));
 
-        // compare each item's lower case brand to user preferred lower case brand
+        // remove items with other brands
         if (brandExists)
             items.removeIf(item -> !item.getBrand().toLowerCase().equals(userBrand));
+
     }
 
     // returns the top result
     public T getTopResult() {
-        return orderedItems.poll();
+        return orderedItems.peek();
     }
 
 
-    // METHODS TO BE USED IN LATER BUILDS - need support for quantity input
 
+    // USED IN LATER BUILDS
     // returns a list of top results of a given quantity
     public List<T> getResults(int quantity) {
+
         // get iterator for topResults PQueue and List for output
         Iterator<T> resultsIter = orderedItems.iterator();
         List<T> results = new ArrayList<>(quantity);
@@ -83,15 +83,6 @@ public class ItemFinder<T extends Recommendable> {
                 results.add(resultsIter.next());
         }
         return results;
-    }
-
-    // displays top results in ranked order
-    public void displayResults(List<T> results) {
-        System.out.println("\nTop Recommendations for you:\n");
-
-        for (int i = 1; i <= results.size(); i++) {
-            System.out.println(i + ". " + results.get(i).toString() + "\n");
-        }
     }
 
 }

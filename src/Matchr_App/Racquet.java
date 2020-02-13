@@ -1,6 +1,8 @@
 package Matchr_App;
 
 
+import java.util.Arrays;
+
 public class Racquet implements Recommendable {
 
     // unique identifier and info
@@ -49,7 +51,6 @@ public class Racquet implements Recommendable {
     // formula: total difference of each value between Racquet and User
     public double calcMatchIndex(User user) {
         Number[] vals = new Number[7];
-        double total = 0;
 
         // save the difference between each value
         // if user does not have preference, ignore the diff: set to 0
@@ -69,9 +70,11 @@ public class Racquet implements Recommendable {
             vals[6] = userShaftPref > 0 ? Math.abs(user.getShaftPref() - getShaftDiameter()) : 0;
 
         // adds up all the differences to total
-        for (Number val : vals) {
-            total += val.doubleValue();
-        }
+        double total = Arrays.stream(vals)
+                .map(Number::doubleValue)
+                .reduce(Double::sum)
+                .get();
+
         // save matchIndex and return it
         setMatchIndex(total);
         return total;
@@ -159,7 +162,7 @@ public class Racquet implements Recommendable {
     }
 
     public void setShaftDiameter(float diameter) {
-        if (validateAttr(diameter, 6.0F, 9.9F))
+        if (validateAttr(diameter, 6.0F, 9.0F))
             this.shaftDiameter = diameter;
     }
 

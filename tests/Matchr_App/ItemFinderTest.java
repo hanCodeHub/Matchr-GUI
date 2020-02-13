@@ -19,6 +19,10 @@ public class ItemFinderTest {
             3, 6, 7,
             4, 5, 3, 7.5F);
 
+    // test racquets
+
+
+    // test finders
     ItemFinder<Racquet> testFinder1 = new ItemFinder<>(testUser1);
     ItemFinder<Racquet> testFinder2 = new ItemFinder<>(testUser2);
 

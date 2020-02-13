@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 public class Controller {
 
@@ -30,6 +31,10 @@ public class Controller {
     private Spinner<Integer> strength;
     @FXML
     private Slider shaftDiameter;
+
+    // result displayed
+    @FXML
+    private Text resultsText;
 
     // buttons
     @FXML
@@ -61,6 +66,7 @@ public class Controller {
         getSkill().getValueFactory().setValue(1);
         getStrength().getValueFactory().setValue(1);
         getShaftDiameter().setValue(7.5);
+        getResultsText().setText("");
     }
 
     // recommend method for processing user request
@@ -81,10 +87,15 @@ public class Controller {
         racquetFinder.rankItems(Inventory.getInventory());
 
         // display the recommendation
-        Racquet result = racquetFinder.getTopResult();
-        System.out.println("\nRecommended for you:\n" + result);
+        Racquet recommended = racquetFinder.getTopResult();
+        displayResult(recommended);
     }
 
+    // displays recommendation to the results text control
+    private void displayResult(Racquet rec) {
+        String text = "Your recommended racquet is " + rec.getBrand() + " " + rec.getModel();
+        resultsText.setText(text);
+    }
 
     // getters
     public TextField getBrand() {
@@ -110,5 +121,9 @@ public class Controller {
     }
     public Slider getShaftDiameter() {
         return shaftDiameter;
+    }
+
+    public Text getResultsText() {
+        return resultsText;
     }
 }

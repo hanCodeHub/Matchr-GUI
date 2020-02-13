@@ -15,10 +15,10 @@ public class JavaFX_App extends Application {
         // loads the UI from the fxml file
         Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
         primaryStage.setTitle("Matchr");
-        primaryStage.setScene(new Scene(root, 700, 700));
+        primaryStage.setScene(new Scene(root, 700, 750));
         primaryStage.show();
 
-        // updates the inventory to populate data (change after implementing database)
+        // populates inventory with data (change after implementing database)
         Inventory.updateInventory();
     }
 
