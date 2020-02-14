@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+// tests Racquet class - calculating match index and validating attributes
 public class RacquetTest {
 
     Racquet testRac = new Racquet(1, "testBrand", "testModel",
@@ -16,12 +17,13 @@ public class RacquetTest {
 
     User testUserEmpty = new User();
 
+    // tests the calculation of a match index value between Racquet and User
     @Test
     public void calcMatchIndex() {
-        // for testing a user with all values selected
+        // tests a user with all values selected
         assertEquals(9.8, testRac.calcMatchIndex(testUser), 0.05);
 
-        // for testing a user with some values selected
+        // tests a user with some values selected
         testUserEmpty.setStrengthPref(2);
         testUserEmpty.setStylePref(4);
         testUserEmpty.setSkillPref(3);
@@ -29,6 +31,7 @@ public class RacquetTest {
         assertEquals(6.3, testRac.calcMatchIndex(testUserEmpty), 0.05);
     }
 
+    // tests the valid ranges of a Racquet's numerical attributes
     @Test
     public void validateAttr() {
         // test for values that are allowed as a racquet attribute
@@ -37,7 +40,7 @@ public class RacquetTest {
         assertTrue(testRac.validateAttr(5, 1, 5));
         assertTrue(testRac.validateAttr(3.5F, 1.0F, 8.8F));
 
-        // not allowed
+        // test for values not allowed - invalid range
         assertFalse(testRac.validateAttr(11, 1, 10));
         assertFalse(testRac.validateAttr(3.3F, 6.6F, 10.0F));
     }

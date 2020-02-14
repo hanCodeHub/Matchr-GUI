@@ -12,14 +12,15 @@ public class JavaFX_App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        // loads the UI from the fxml file
+
+        // loads the UI from the fxml file into the scene
         Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
         primaryStage.setTitle("Matchr");
         primaryStage.setScene(new Scene(root, 700, 750));
         primaryStage.show();
 
         // populates inventory with data (change after implementing database)
-        Inventory.updateInventory();
+        Inventory.readFromExcel();
     }
 
     public static void main(String[] args) {

@@ -7,8 +7,6 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-
-import javax.xml.bind.annotation.XmlElement;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -25,15 +23,6 @@ public class Inventory {
     // inventory of Racquet objects
     private static ArrayList<Racquet> racquetList = new ArrayList<>(20);
 
-
-    // returns the list of racquets to client program after reading input file
-    public static void updateInventory() {
-        readFromExcel();
-
-        // provides receipt by printing basic summary of inventory to txt file
-        writeToText();
-    }
-
     // returns a copy of inventory of racquets to be used for recommendations
     public static ArrayList<Racquet> getInventory() {
         return new ArrayList<>(racquetList);
@@ -42,7 +31,7 @@ public class Inventory {
     // reads inventory data from excel file of given file path
     // then populates the racquetList with Racquet objects
     // PRECONDITION: table headers in input file should match class Racquet attributes
-    private static void readFromExcel() {
+    public static void readFromExcel() {
 
         try (FileInputStream file = new FileInputStream(Inventory.inputPath.toFile())) {
             // create a new workbook
@@ -91,7 +80,7 @@ public class Inventory {
 
 
     // writes inventory to text file. include only {id, brand, model} for each Racquet
-    private static void writeToText() throws NotImplementedException {
+    public static void writeToText() throws NotImplementedException {
 
         Formatter outfile = null;
 

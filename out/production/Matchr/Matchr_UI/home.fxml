@@ -14,21 +14,36 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.text.TextFlow?>
 <BorderPane fx:controller="Matchr_UI.Controller"
             xmlns:fx="http://javafx.com/fxml" >
 
     <top>
-        <!-- Header -->
+
         <VBox alignment="CENTER">
-            <Label text="Welcome to Matchr!"
-                   BorderPane.alignment="CENTER"
-                   style="-fx-font-size: 30; -fx-text-fill: #052332;
+
+            <!-- Window Header -->
+            <TextFlow BorderPane.alignment="CENTER" textAlignment="CENTER">
+
+                <padding><Insets bottom="20" top="20"/></padding>
+
+                <Label text="Welcome to " textFill="black"
+                       style="-fx-font-size: 30;
                     -fx-font-family: Helvetica, sans-serif;
-                    -fx-wrap-text: true; -fx-label-padding: 30;"
-            />
-            <Text text="Enter the values for the following applicable fields where applicable"
+                    -fx-wrap-text: true;"
+                />
+                <Label text="Matchr" textFill="#00aeff" style="-fx-font-size: 30;
+                    -fx-font-family: Helvetica, sans-serif;" />
+
+            </TextFlow>
+
+            <!-- Subtitle -->
+            <Text text="Enter the values for any of the following fields to get a recommendation."
                   style="-fx-font-size: 17; -fx-font-family: Helvetica;
                   -fx-wrap-text: true; -fx-alignment: center" />
+
+            <padding><Insets bottom="30"/></padding>
         </VBox>
 
     </top>
@@ -97,14 +112,20 @@
             <Label GridPane.rowIndex="7" GridPane.columnIndex="0"
                    text="How thick do you want the shaft diameter to be in mm?"
                    style="-fx-font-size: 17; -fx-font-family: Helvetica"/>
-            <Slider fx:id="shaftDiameter" GridPane.rowIndex="8" GridPane.columnIndex="0"
+            <Slider fx:id="shaftDiameter" GridPane.rowIndex="8"
+                    GridPane.columnSpan="2" GridPane.halignment="CENTER"
                     min="6" max="9" value="7.5"
                     showTickMarks="true" showTickLabels="true" majorTickUnit="1"
                     minorTickCount="9" snapToTicks="true" prefWidth="200"
                     style="-fx-font-size: 17"/>
 
+            <Separator GridPane.rowIndex="9" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+                <padding><Insets top="10" bottom="10"/></padding>
+            </Separator>
+
             <!-- Results Text -->
-            <Text fx:id="resultsText" />
+            <Text fx:id="resultsText" GridPane.rowIndex="11" GridPane.columnSpan="2"
+                  style="-fx-font-size: 20;" GridPane.halignment="CENTER" />
         </GridPane>
 
     </center>
@@ -115,6 +136,7 @@
         <HBox spacing="10" alignment="CENTER">
             <padding><Insets bottom="30"/></padding>
 
+            <!-- recommend button -->
             <Button fx:id="recommendBtn" onAction="#onSubmit"
                     text="Recommend" prefWidth="120">
                 <graphic>
@@ -123,6 +145,8 @@
                     </ImageView>
                 </graphic>
             </Button>
+
+            <!-- reset button -->
             <Button fx:id="resetBtn" onAction="#onSubmit"
                     text="Reset" prefWidth="120">
                 <graphic>

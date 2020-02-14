@@ -1,53 +1,263 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <racquets>
     <racquet>
+        <id>1</id>
+        <brand>Yonex</brand>
+        <model>NanoSpeed 9900</model>
+        <weight>3</weight>
         <balance>5</balance>
-        <matchIndex>0.0</matchIndex>
+        <stiffness>8</stiffness>
         <shaftDiameter>8.0</shaftDiameter>
-        <skill>4</skill>
-        <stiffness>8</stiffness>
-        <strength>3</strength>
         <style>3</style>
-        <weight>3</weight>
-    </racquet>
-    <racquet>
-        <balance>7</balance>
-        <matchIndex>0.0</matchIndex>
-        <shaftDiameter>6.0</shaftDiameter>
-        <skill>3</skill>
-        <stiffness>8</stiffness>
-        <strength>4</strength>
-        <style>5</style>
-        <weight>5</weight>
-    </racquet>
-    <racquet>
-        <balance>6</balance>
-        <matchIndex>0.0</matchIndex>
-        <shaftDiameter>7.0</shaftDiameter>
-        <skill>5</skill>
-        <stiffness>7</stiffness>
+        <skill>4</skill>
         <strength>3</strength>
-        <style>4</style>
-        <weight>3</weight>
+        <matchIndex>4.5</matchIndex>
     </racquet>
     <racquet>
-        <balance>9</balance>
-        <matchIndex>0.0</matchIndex>
-        <shaftDiameter>7.0</shaftDiameter>
-        <skill>5</skill>
-        <stiffness>9</stiffness>
-        <strength>5</strength>
+        <id>2</id>
+        <brand>Victor</brand>
+        <model>Thruster K 7000</model>
+        <weight>5</weight>
+        <balance>7</balance>
+        <stiffness>8</stiffness>
+        <shaftDiameter>6.0</shaftDiameter>
         <style>5</style>
-        <weight>4</weight>
+        <skill>3</skill>
+        <strength>4</strength>
+        <matchIndex>9.5</matchIndex>
     </racquet>
     <racquet>
-        <balance>4</balance>
-        <matchIndex>0.0</matchIndex>
-        <shaftDiameter>7.0</shaftDiameter>
-        <skill>3</skill>
-        <stiffness>6</stiffness>
-        <strength>2</strength>
-        <style>2</style>
+        <id>3</id>
+        <brand>Lining</brand>
+        <model>N9 TD</model>
         <weight>3</weight>
+        <balance>6</balance>
+        <stiffness>7</stiffness>
+        <shaftDiameter>7.0</shaftDiameter>
+        <style>4</style>
+        <skill>5</skill>
+        <strength>3</strength>
+        <matchIndex>0.5</matchIndex>
+    </racquet>
+    <racquet>
+        <id>4</id>
+        <brand>Mizuno</brand>
+        <model>Fortius 30 Power</model>
+        <weight>4</weight>
+        <balance>9</balance>
+        <stiffness>9</stiffness>
+        <shaftDiameter>7.0</shaftDiameter>
+        <style>5</style>
+        <skill>5</skill>
+        <strength>5</strength>
+        <matchIndex>9.5</matchIndex>
+    </racquet>
+    <racquet>
+        <id>5</id>
+        <brand>Carlton</brand>
+        <model>Air Edge</model>
+        <weight>3</weight>
+        <balance>4</balance>
+        <stiffness>6</stiffness>
+        <shaftDiameter>7.0</shaftDiameter>
+        <style>2</style>
+        <skill>3</skill>
+        <strength>2</strength>
+        <matchIndex>8.5</matchIndex>
+    </racquet>
+    <racquet>
+        <id>1</id>
+        <brand>Yonex</brand>
+        <model>NanoSpeed 9900</model>
+        <weight>3</weight>
+        <balance>5</balance>
+        <stiffness>8</stiffness>
+        <shaftDiameter>8.0</shaftDiameter>
+        <style>3</style>
+        <skill>4</skill>
+        <strength>3</strength>
+        <matchIndex>4.5</matchIndex>
+    </racquet>
+    <racquet>
+        <id>2</id>
+        <brand>Victor</brand>
+        <model>Thruster K 7000</model>
+        <weight>5</weight>
+        <balance>7</balance>
+        <stiffness>8</stiffness>
+        <shaftDiameter>6.0</shaftDiameter>
+        <style>5</style>
+        <skill>3</skill>
+        <strength>4</strength>
+        <matchIndex>9.5</matchIndex>
+    </racquet>
+    <racquet>
+        <id>3</id>
+        <brand>Lining</brand>
+        <model>N9 TD</model>
+        <weight>3</weight>
+        <balance>6</balance>
+        <stiffness>7</stiffness>
+        <shaftDiameter>7.0</shaftDiameter>
+        <style>4</style>
+        <skill>5</skill>
+        <strength>3</strength>
+        <matchIndex>0.5</matchIndex>
+    </racquet>
+    <racquet>
+        <id>4</id>
+        <brand>Mizuno</brand>
+        <model>Fortius 30 Power</model>
+        <weight>4</weight>
+        <balance>9</balance>
+        <stiffness>9</stiffness>
+        <shaftDiameter>7.0</shaftDiameter>
+        <style>5</style>
+        <skill>5</skill>
+        <strength>5</strength>
+        <matchIndex>9.5</matchIndex>
+    </racquet>
+    <racquet>
+        <id>5</id>
+        <brand>Carlton</brand>
+        <model>Air Edge</model>
+        <weight>3</weight>
+        <balance>4</balance>
+        <stiffness>6</stiffness>
+        <shaftDiameter>7.0</shaftDiameter>
+        <style>2</style>
+        <skill>3</skill>
+        <strength>2</strength>
+        <matchIndex>8.5</matchIndex>
+    </racquet>
+    <racquet>
+        <id>1</id>
+        <brand>Yonex</brand>
+        <model>NanoSpeed 9900</model>
+        <weight>3</weight>
+        <balance>5</balance>
+        <stiffness>8</stiffness>
+        <shaftDiameter>8.0</shaftDiameter>
+        <style>3</style>
+        <skill>4</skill>
+        <strength>3</strength>
+        <matchIndex>4.5</matchIndex>
+    </racquet>
+    <racquet>
+        <id>2</id>
+        <brand>Victor</brand>
+        <model>Thruster K 7000</model>
+        <weight>5</weight>
+        <balance>7</balance>
+        <stiffness>8</stiffness>
+        <shaftDiameter>6.0</shaftDiameter>
+        <style>5</style>
+        <skill>3</skill>
+        <strength>4</strength>
+        <matchIndex>9.5</matchIndex>
+    </racquet>
+    <racquet>
+        <id>3</id>
+        <brand>Lining</brand>
+        <model>N9 TD</model>
+        <weight>3</weight>
+        <balance>6</balance>
+        <stiffness>7</stiffness>
+        <shaftDiameter>7.0</shaftDiameter>
+        <style>4</style>
+        <skill>5</skill>
+        <strength>3</strength>
+        <matchIndex>0.5</matchIndex>
+    </racquet>
+    <racquet>
+        <id>4</id>
+        <brand>Mizuno</brand>
+        <model>Fortius 30 Power</model>
+        <weight>4</weight>
+        <balance>9</balance>
+        <stiffness>9</stiffness>
+        <shaftDiameter>7.0</shaftDiameter>
+        <style>5</style>
+        <skill>5</skill>
+        <strength>5</strength>
+        <matchIndex>9.5</matchIndex>
+    </racquet>
+    <racquet>
+        <id>5</id>
+        <brand>Carlton</brand>
+        <model>Air Edge</model>
+        <weight>3</weight>
+        <balance>4</balance>
+        <stiffness>6</stiffness>
+        <shaftDiameter>7.0</shaftDiameter>
+        <style>2</style>
+        <skill>3</skill>
+        <strength>2</strength>
+        <matchIndex>8.5</matchIndex>
+    </racquet>
+    <racquet>
+        <id>1</id>
+        <brand>Yonex</brand>
+        <model>NanoSpeed 9900</model>
+        <weight>3</weight>
+        <balance>5</balance>
+        <stiffness>8</stiffness>
+        <shaftDiameter>8.0</shaftDiameter>
+        <style>3</style>
+        <skill>4</skill>
+        <strength>3</strength>
+        <matchIndex>0.0</matchIndex>
+    </racquet>
+    <racquet>
+        <id>2</id>
+        <brand>Victor</brand>
+        <model>Thruster K 7000</model>
+        <weight>5</weight>
+        <balance>7</balance>
+        <stiffness>8</stiffness>
+        <shaftDiameter>6.0</shaftDiameter>
+        <style>5</style>
+        <skill>3</skill>
+        <strength>4</strength>
+        <matchIndex>0.0</matchIndex>
+    </racquet>
+    <racquet>
+        <id>3</id>
+        <brand>Lining</brand>
+        <model>N9 TD</model>
+        <weight>3</weight>
+        <balance>6</balance>
+        <stiffness>7</stiffness>
+        <shaftDiameter>7.0</shaftDiameter>
+        <style>4</style>
+        <skill>5</skill>
+        <strength>3</strength>
+        <matchIndex>0.0</matchIndex>
+    </racquet>
+    <racquet>
+        <id>4</id>
+        <brand>Mizuno</brand>
+        <model>Fortius 30 Power</model>
+        <weight>4</weight>
+        <balance>9</balance>
+        <stiffness>9</stiffness>
+        <shaftDiameter>7.0</shaftDiameter>
+        <style>5</style>
+        <skill>5</skill>
+        <strength>5</strength>
+        <matchIndex>0.0</matchIndex>
+    </racquet>
+    <racquet>
+        <id>5</id>
+        <brand>Carlton</brand>
+        <model>Air Edge</model>
+        <weight>3</weight>
+        <balance>4</balance>
+        <stiffness>6</stiffness>
+        <shaftDiameter>7.0</shaftDiameter>
+        <style>2</style>
+        <skill>3</skill>
+        <strength>2</strength>
+        <matchIndex>0.0</matchIndex>
     </racquet>
 </racquets>

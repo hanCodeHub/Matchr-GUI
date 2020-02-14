@@ -1,8 +1,13 @@
 package Matchr_App;
 
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Arrays;
 
+@XmlRootElement(name = "racquet")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Racquet implements Recommendable {
 
     // unique identifier and info

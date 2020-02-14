@@ -1,20 +1,15 @@
 package Matchr_App;
 
-
-import org.apache.poi.ss.formula.functions.T;
-
 import javax.xml.bind.JAXB;
-import javax.xml.bind.annotation.XmlElement;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
 
+
+import java.util.NoSuchElementException;
 
 // Serializes Racquet objects: saves to or retrieves from XML
 public class XMLSerializer {
@@ -43,7 +38,7 @@ public class XMLSerializer {
         try (BufferedReader input = Files.newBufferedReader(xmlPath)) {
 
             // read XML from file into the Racquets class
-            racquets = JAXB.unmarshal(input, Racquets.class);
+            racquets = JAXB.unmarshal(input, racquets.getClass());
 
         } catch (NoSuchElementException | IOException e){
             System.out.println("Cannot deserialize objects from XML");

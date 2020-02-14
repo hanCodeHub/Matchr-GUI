@@ -12,7 +12,10 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
+// handles events from UI and returns data to UI
 public class Controller {
+
+    // UI OBJECTS
 
     // controls
     @FXML
@@ -43,18 +46,17 @@ public class Controller {
     private Button resetBtn;
 
 
+    // EVENT HANDLERS
     // calls the event handler depending on the button clicked
     @FXML
     public void onSubmit(ActionEvent e) {
         // recommend
         if (e.getSource().equals(recommendBtn))
             handleRec();
-        // reset
+            // reset
         else if (e.getSource().equals(resetBtn))
             handleReset();
     }
-
-    // Event handlers
 
     // reset method for returning all the controls to default
     private void handleReset() {
@@ -122,7 +124,6 @@ public class Controller {
     public Slider getShaftDiameter() {
         return shaftDiameter;
     }
-
     public Text getResultsText() {
         return resultsText;
     }

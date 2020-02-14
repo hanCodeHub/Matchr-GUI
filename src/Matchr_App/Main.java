@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         // updates the inventory to populate data (change after implementing database)
-        Inventory.updateInventory();
+        Inventory.readFromExcel();
 
         // initializes new session and returns the user with saved preferences
         Session session = new Session();

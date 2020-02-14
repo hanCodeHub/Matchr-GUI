@@ -8,22 +8,32 @@ import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
+// tests that the Inventory methods for reading and writing racquet data
 public class InventoryTest {
 
+    // tests the reading of excel file
     // Precondition: data for exactly 5 racquets are provided in file "racquet_inventory.xlsx"
     @Test
-    public void updateInventory() {
-        Inventory.updateInventory();
+    public void readFromExcel() {
+
+        // prepare the inventory and output .txt file
+        Inventory.readFromExcel();
+        Inventory.writeToText();
         ArrayList<Racquet> inventory = Inventory.getInventory();
 
         // test the new inventory size matches the number of racquets in input file
         assertEquals(5, inventory.size());
+    }
 
+    // tests the writing to txt file
+    @Test
+    public void writeToText() {
         // test the output file has been created
         File outputFile = new File("static/racquet_output.txt");
         assertTrue(outputFile.exists());
     }
 
+    // tests the creation of a Racquet object
     @Test
     public void createRacquet() {
         String[] attributes = {"1", "testBrand", "testModel",

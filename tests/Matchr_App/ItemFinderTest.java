@@ -1,10 +1,10 @@
 package Matchr_App;
 
+import org.junit.Before;
 import org.junit.Test;
-
+import static org.junit.Assert.*;
 import java.util.List;
 
-import static org.junit.Assert.*;
 
 public class ItemFinderTest {
 
@@ -19,19 +19,23 @@ public class ItemFinderTest {
             3, 6, 7,
             4, 5, 3, 7.5F);
 
-    // test racquets
-
-
     // test finders
     ItemFinder<Racquet> testFinder1 = new ItemFinder<>(testUser1);
     ItemFinder<Racquet> testFinder2 = new ItemFinder<>(testUser2);
 
 
-    @Test // also tests getTopResult() and filterBrand()
+    // ensures inventory is updated with racquets from excel
+    @Before
+    public void updateInventory() {
+        Inventory.readFromExcel();
+    }
+
+    // tests the ordering of items based on matchIndex of each item
+    // getTopResult() and filterBrand() are called privately
+    @Test
     public void rankItems() {
 
-        // prepares the test data of racquets
-        Inventory.updateInventory();
+        // populate ItemFinders with racquet data
         List<Racquet> racquets = Inventory.getInventory();
         testFinder1.rankItems(racquets);
         testFinder2.rankItems(racquets);
@@ -42,12 +46,10 @@ public class ItemFinderTest {
         assertEquals(1, testFinder2.getTopResult().getId());
     }
 
-
+    // tests the return of a given quantity of results
     @Test
     public void getResults() {
 
-        // prepares the test data of racquets
-        Inventory.updateInventory();
         List<Racquet> racquets = Inventory.getInventory();
         testFinder1.rankItems(racquets);
 
