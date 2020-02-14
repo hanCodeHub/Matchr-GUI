@@ -24,6 +24,9 @@ public class Racquet implements Recommendable {
     // value for recommendation (lower is closer to user)
     private double matchIndex;
 
+    public Racquet() {
+    }
+
     // This constructor used when reading inventory file
     public Racquet(int id, String brand, String model) {
         this.id = id;
@@ -112,59 +115,48 @@ public class Racquet implements Recommendable {
     public float getShaftDiameter() { return shaftDiameter;}
 
     public double getMatchIndex() {return matchIndex; }
+
+    // setters
     public void setMatchIndex(double matchIndex) {
         this.matchIndex = matchIndex;
     }
 
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+    public void setStiffness(int stiffness) {
+        this.stiffness = stiffness;
+    }
+    public void setStyle(int style) {
+        this.style = style;
+    }
+    public void setSkill(int skill) {
+        this.skill = skill;
+    }
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+    public void setShaftDiameter(float diameter) {
+        this.shaftDiameter = diameter;
+    }
+
+
     // validateAttr ensures that attributes of new Racquets are between low and high
     // if invalid, the attribute will not be set by the setter
     public <T extends Comparable<T>> boolean validateAttr(T attribute, T low, T high)
-        throws IllegalArgumentException {
+            throws IllegalArgumentException {
 
         // if attribute is at the edge of low or high
         if (attribute.compareTo(low) == 0 || attribute.compareTo(high) == 0)
             return true;
 
-        // if attribute is between low and high
+            // if attribute is between low and high
         else return attribute.compareTo(low) > 0 && attribute.compareTo(high) < 0;
     }
 
-    // attribute setters only work if provided values can be validated
-
-    public void setWeight(int weight) {
-        if (validateAttr(weight, 1, 5))
-            this.weight = weight;
-    }
-
-    public void setBalance(int balance) {
-        if (validateAttr(balance, 1, 10))
-            this.balance = balance;
-    }
-
-    public void setStiffness(int stiffness) {
-        if (validateAttr(stiffness, 1, 10))
-            this.stiffness = stiffness;
-    }
-
-    public void setStyle(int style) {
-        if (validateAttr(style, 1, 5))
-            this.style = style;
-    }
-
-    public void setSkill(int skill) {
-        if (validateAttr(skill, 1, 5))
-            this.skill = skill;
-    }
-
-    public void setStrength(int strength) {
-        if (validateAttr(strength, 1, 5))
-            this.strength = strength;
-    }
-
-    public void setShaftDiameter(float diameter) {
-        if (validateAttr(diameter, 6.0F, 9.0F))
-            this.shaftDiameter = diameter;
-    }
 
     @Override
     public String toString() {
