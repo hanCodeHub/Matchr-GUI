@@ -42,8 +42,8 @@ public class XMLSerializerTest {
         boolean sameNumberObjects = srcRacquets.size() == xmlRacquets.size();
 
         // same objects found in xml is found in source (inventory)
-        boolean allObjectsMatch = racquets.getRacquets().stream()
-                .allMatch(xmlE -> inventory.getRacquets().stream()
+        boolean allObjectsMatch = xmlRacquets.stream()
+                .allMatch(xmlE -> srcRacquets.stream()
                         .anyMatch(inventoryE -> xmlE.getId() == inventoryE.getId())
                 );
 

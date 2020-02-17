@@ -16,7 +16,7 @@ public class XMLSerializer {
 
     private static final Path xmlPath = Paths.get("static/racquet_objects.xml");
 
-    // saves racquet objects as XML in xmlPath
+    // saves racquet objects as XML in file located at xmlPath
     // Precondition: objects in listObjects must be serializable as XML
     public void saveToXML(Racquets racquets) {
         try (BufferedWriter output = Files.newBufferedWriter(xmlPath)) {
@@ -30,7 +30,7 @@ public class XMLSerializer {
         }
     }
 
-    // reads racquet objects from XML in xmlPath
+    // reads racquet objects from XML in file located at xmlPath
     // Precondition: file "racquet_objects.xml" must exist in static directory
     public Racquets readFromXML () {
         Racquets racquets = new Racquets();

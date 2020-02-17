@@ -16,8 +16,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.text.TextFlow?>
-<BorderPane fx:controller="Matchr_UI.Controller"
-            xmlns:fx="http://javafx.com/fxml" >
+
+<BorderPane fx:controller="Matchr_UI.Controller" xmlns:fx="http://javafx.com/fxml" >
 
     <top>
 
