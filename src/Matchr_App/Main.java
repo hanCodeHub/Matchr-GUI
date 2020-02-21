@@ -25,7 +25,8 @@ public class Main {
         RacquetModel inventoryDb = new RacquetModel();
         Inventory.readFromExcel();
         ArrayList<Racquet> racquets = Inventory.getInventory();
-        System.out.println(racquets.get(0).getShaftDiameter());
+
         inventoryDb.insertRacquets(racquets);
+        inventoryDb.getAllRacquets();
     }
 }

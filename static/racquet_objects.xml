@@ -7,11 +7,11 @@
         <weight>3</weight>
         <balance>5</balance>
         <stiffness>8</stiffness>
-        <shaftDiameter>8.0</shaftDiameter>
+        <shaftDiameter>8.3</shaftDiameter>
         <style>3</style>
         <skill>4</skill>
         <strength>3</strength>
-        <matchIndex>4.5</matchIndex>
+        <matchIndex>4.800000190734863</matchIndex>
     </racquet>
     <racquet>
         <id>2</id>
@@ -20,11 +20,11 @@
         <weight>5</weight>
         <balance>7</balance>
         <stiffness>8</stiffness>
-        <shaftDiameter>6.0</shaftDiameter>
+        <shaftDiameter>6.9</shaftDiameter>
         <style>5</style>
         <skill>3</skill>
         <strength>4</strength>
-        <matchIndex>9.5</matchIndex>
+        <matchIndex>8.599999904632568</matchIndex>
     </racquet>
     <racquet>
         <id>3</id>
@@ -33,11 +33,11 @@
         <weight>3</weight>
         <balance>6</balance>
         <stiffness>7</stiffness>
-        <shaftDiameter>7.0</shaftDiameter>
+        <shaftDiameter>7.5</shaftDiameter>
         <style>4</style>
         <skill>5</skill>
         <strength>3</strength>
-        <matchIndex>0.5</matchIndex>
+        <matchIndex>0.0</matchIndex>
     </racquet>
     <racquet>
         <id>4</id>
@@ -46,11 +46,11 @@
         <weight>4</weight>
         <balance>9</balance>
         <stiffness>9</stiffness>
-        <shaftDiameter>7.0</shaftDiameter>
+        <shaftDiameter>7.7</shaftDiameter>
         <style>5</style>
         <skill>5</skill>
         <strength>5</strength>
-        <matchIndex>9.5</matchIndex>
+        <matchIndex>9.199999809265137</matchIndex>
     </racquet>
     <racquet>
         <id>5</id>
@@ -59,11 +59,11 @@
         <weight>3</weight>
         <balance>4</balance>
         <stiffness>6</stiffness>
-        <shaftDiameter>7.0</shaftDiameter>
+        <shaftDiameter>7.3</shaftDiameter>
         <style>2</style>
         <skill>3</skill>
         <strength>2</strength>
-        <matchIndex>8.5</matchIndex>
+        <matchIndex>8.199999809265137</matchIndex>
     </racquet>
     <racquet>
         <id>1</id>
@@ -72,11 +72,11 @@
         <weight>3</weight>
         <balance>5</balance>
         <stiffness>8</stiffness>
-        <shaftDiameter>8.0</shaftDiameter>
+        <shaftDiameter>8.3</shaftDiameter>
         <style>3</style>
         <skill>4</skill>
         <strength>3</strength>
-        <matchIndex>4.5</matchIndex>
+        <matchIndex>4.800000190734863</matchIndex>
     </racquet>
     <racquet>
         <id>2</id>
@@ -85,11 +85,11 @@
         <weight>5</weight>
         <balance>7</balance>
         <stiffness>8</stiffness>
-        <shaftDiameter>6.0</shaftDiameter>
+        <shaftDiameter>6.9</shaftDiameter>
         <style>5</style>
         <skill>3</skill>
         <strength>4</strength>
-        <matchIndex>9.5</matchIndex>
+        <matchIndex>8.599999904632568</matchIndex>
     </racquet>
     <racquet>
         <id>3</id>
@@ -98,11 +98,11 @@
         <weight>3</weight>
         <balance>6</balance>
         <stiffness>7</stiffness>
-        <shaftDiameter>7.0</shaftDiameter>
+        <shaftDiameter>7.5</shaftDiameter>
         <style>4</style>
         <skill>5</skill>
         <strength>3</strength>
-        <matchIndex>0.5</matchIndex>
+        <matchIndex>0.0</matchIndex>
     </racquet>
     <racquet>
         <id>4</id>
@@ -111,11 +111,11 @@
         <weight>4</weight>
         <balance>9</balance>
         <stiffness>9</stiffness>
-        <shaftDiameter>7.0</shaftDiameter>
+        <shaftDiameter>7.7</shaftDiameter>
         <style>5</style>
         <skill>5</skill>
         <strength>5</strength>
-        <matchIndex>9.5</matchIndex>
+        <matchIndex>9.199999809265137</matchIndex>
     </racquet>
     <racquet>
         <id>5</id>
@@ -124,11 +124,11 @@
         <weight>3</weight>
         <balance>4</balance>
         <stiffness>6</stiffness>
-        <shaftDiameter>7.0</shaftDiameter>
+        <shaftDiameter>7.3</shaftDiameter>
         <style>2</style>
         <skill>3</skill>
         <strength>2</strength>
-        <matchIndex>8.5</matchIndex>
+        <matchIndex>8.199999809265137</matchIndex>
     </racquet>
     <racquet>
         <id>1</id>
@@ -137,11 +137,11 @@
         <weight>3</weight>
         <balance>5</balance>
         <stiffness>8</stiffness>
-        <shaftDiameter>8.0</shaftDiameter>
+        <shaftDiameter>8.3</shaftDiameter>
         <style>3</style>
         <skill>4</skill>
         <strength>3</strength>
-        <matchIndex>4.5</matchIndex>
+        <matchIndex>4.800000190734863</matchIndex>
     </racquet>
     <racquet>
         <id>2</id>
@@ -150,11 +150,11 @@
         <weight>5</weight>
         <balance>7</balance>
         <stiffness>8</stiffness>
-        <shaftDiameter>6.0</shaftDiameter>
+        <shaftDiameter>6.9</shaftDiameter>
         <style>5</style>
         <skill>3</skill>
         <strength>4</strength>
-        <matchIndex>9.5</matchIndex>
+        <matchIndex>8.599999904632568</matchIndex>
     </racquet>
     <racquet>
         <id>3</id>
@@ -163,11 +163,11 @@
         <weight>3</weight>
         <balance>6</balance>
         <stiffness>7</stiffness>
-        <shaftDiameter>7.0</shaftDiameter>
+        <shaftDiameter>7.5</shaftDiameter>
         <style>4</style>
         <skill>5</skill>
         <strength>3</strength>
-        <matchIndex>0.5</matchIndex>
+        <matchIndex>0.0</matchIndex>
     </racquet>
     <racquet>
         <id>4</id>
@@ -176,11 +176,11 @@
         <weight>4</weight>
         <balance>9</balance>
         <stiffness>9</stiffness>
-        <shaftDiameter>7.0</shaftDiameter>
+        <shaftDiameter>7.7</shaftDiameter>
         <style>5</style>
         <skill>5</skill>
         <strength>5</strength>
-        <matchIndex>9.5</matchIndex>
+        <matchIndex>9.199999809265137</matchIndex>
     </racquet>
     <racquet>
         <id>5</id>
@@ -189,11 +189,11 @@
         <weight>3</weight>
         <balance>4</balance>
         <stiffness>6</stiffness>
-        <shaftDiameter>7.0</shaftDiameter>
+        <shaftDiameter>7.3</shaftDiameter>
         <style>2</style>
         <skill>3</skill>
         <strength>2</strength>
-        <matchIndex>8.5</matchIndex>
+        <matchIndex>8.199999809265137</matchIndex>
     </racquet>
     <racquet>
         <id>1</id>
@@ -202,7 +202,7 @@
         <weight>3</weight>
         <balance>5</balance>
         <stiffness>8</stiffness>
-        <shaftDiameter>8.0</shaftDiameter>
+        <shaftDiameter>8.3</shaftDiameter>
         <style>3</style>
         <skill>4</skill>
         <strength>3</strength>
@@ -215,7 +215,7 @@
         <weight>5</weight>
         <balance>7</balance>
         <stiffness>8</stiffness>
-        <shaftDiameter>6.0</shaftDiameter>
+        <shaftDiameter>6.9</shaftDiameter>
         <style>5</style>
         <skill>3</skill>
         <strength>4</strength>
@@ -228,7 +228,7 @@
         <weight>3</weight>
         <balance>6</balance>
         <stiffness>7</stiffness>
-        <shaftDiameter>7.0</shaftDiameter>
+        <shaftDiameter>7.5</shaftDiameter>
         <style>4</style>
         <skill>5</skill>
         <strength>3</strength>
@@ -241,7 +241,7 @@
         <weight>4</weight>
         <balance>9</balance>
         <stiffness>9</stiffness>
-        <shaftDiameter>7.0</shaftDiameter>
+        <shaftDiameter>7.7</shaftDiameter>
         <style>5</style>
         <skill>5</skill>
         <strength>5</strength>
@@ -254,7 +254,7 @@
         <weight>3</weight>
         <balance>4</balance>
         <stiffness>6</stiffness>
-        <shaftDiameter>7.0</shaftDiameter>
+        <shaftDiameter>7.3</shaftDiameter>
         <style>2</style>
         <skill>3</skill>
         <strength>2</strength>

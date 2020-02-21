@@ -41,18 +41,19 @@ public class Racquet implements Recommendable {
 
     // constructor for testing
     public Racquet(int id, String brand, String model,
-                   int weight, int balance, int stiffness, float shaftDiameter,
-                   int style, int skill, int strength) {
+                   int weight, int balance, int stiffness,
+                   int style, int skill, int strength,
+                   float shaftDiameter) {
         this.id = id;
         this.brand = brand;
         this.model = model;
         this.weight = weight;
         this.balance = balance;
         this.stiffness = stiffness;
-        this.shaftDiameter = shaftDiameter;
         this.style = style;
         this.skill = skill;
         this.strength = strength;
+        this.shaftDiameter = shaftDiameter;
     }
 
     // calculates the matchIndex as it relates to the user

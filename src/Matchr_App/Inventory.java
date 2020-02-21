@@ -1,5 +1,6 @@
 package Matchr_App;
 
+import org.apache.poi.hpsf.Decimal;
 import org.apache.poi.ss.formula.eval.NotImplementedException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
@@ -60,7 +61,7 @@ public class Inventory {
                 if (newRacquet != null)
                     racquetList.add(createRacquet(attributes));
             }
-            System.out.println("Racquet inventory successfully updated in the database.\n");
+
         // if file does not exist
         } catch (FileNotFoundException err) {
             System.out.println(
@@ -162,10 +163,18 @@ public class Inventory {
         CellType cellType = cell.getCellType();
 
         // add cell value to list of attributes (as Strings)
-        if (cellType == CellType.STRING)
+        if (cellType == CellType.STRING)  // if cell is text
             attributes.add(cell.getStringCellValue());
-        else if (cellType == CellType.NUMERIC)
-            attributes.add(String.valueOf((int) cell.getNumericCellValue()));
+
+        else if (cellType == CellType.NUMERIC) {  // if cell is number
+            double numValue = cell.getNumericCellValue();
+
+            if (numValue == (int) numValue) {  // if number is integer
+                attributes.add(String.valueOf((int) cell.getNumericCellValue()));
+            } else {  // if number has decimals
+                attributes.add(String.valueOf(cell.getNumericCellValue()));
+            }
+        }
         else
             throw new InputMismatchException("cells can only have numeric or text values!");
     }
