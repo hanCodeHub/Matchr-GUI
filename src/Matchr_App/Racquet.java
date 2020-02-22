@@ -128,6 +128,9 @@ public class Racquet implements Recommendable, Comparable<Racquet> {
         this.matchIndex = matchIndex;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
     public void setWeight(int weight) {
         this.weight = weight;
     }

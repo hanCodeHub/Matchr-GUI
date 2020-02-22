@@ -1,5 +1,8 @@
-package Matchr_App;
+package Matchr_Models;
 
+import Matchr_App.Inventory;
+import Matchr_App.Racquet;
+import Matchr_Models.RacquetModel;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,8 +17,10 @@ public class RacquetModelTest {
     // ensures that raw data is read from excel
     @Before
     public void setUp() {
+        Inventory.clearRacquets();
         Inventory.readFromExcel();
     }
+
 
     // tests reading from and writing to the racquets table in sqlite database
     @Test // also tests getAllRacquets()

@@ -4,6 +4,8 @@ package Matchr_App;
 // holds user info and preferences
 public class User {
 
+    private String name;
+
     // text preferences
     private String brand;  // preferred brand
 
@@ -41,6 +43,10 @@ public class User {
     }
 
     // getters
+
+    public String getName() {
+        return name;
+    }
     public String getBrand() {
         return brand;
     }
@@ -70,6 +76,10 @@ public class User {
     }
 
     // setters
+
+    public void setName(String name) {
+        this.name = name;
+    }
     public void setBrand(String brand) {
         this.brand = brand;
     }
@@ -100,14 +110,8 @@ public class User {
 
     @Override
     public String toString() {
-        return "User preferred values:" +
-                "\nbrand = " + brand +
-                "\nweight = " + weightPref +
-                "\nbalance = " + balancePref +
-                "\nstiffness = " + stiffnessPref +
-                "\nstyle = " + stylePref +
-                "\nskill = " + skillPref +
-                "\nstrength = " + strengthPref +
-                "\nshaft = " + shaftPref;
+        return "User{" +
+                "name='" + name + '\'' + ", racquet=" + racquet +
+                '}';
     }
 }

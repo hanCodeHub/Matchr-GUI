@@ -1,4 +1,6 @@
-package Matchr_App;
+package Matchr_Models;
+
+import Matchr_App.Racquet;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -19,19 +21,19 @@ public class RacquetModel {
     private static final String RACQUETS_TABLE = "racquets";
 
     // SQL string for table definition
-    public static final String RACQUETS_SCHEMA_TYPES = "(" +
+    public static final String RACQUETS_SCHEMA = "(" +
             "_id INT PRIMARY KEY NOT NULL, brand TEXT NOT NULL, model TEXT NOT NULL, " +
             "weight INT, balance INT, stiffness INT, " +
             "style INT, skill INT, strength INT, " +
-            "shaftDiameter REAL)";
+            "shaftDiameter REAL, UNIQUE(_id))";
 
     // SQL string for use in CRUD statements
-    public static final String RACQUETS_SCHEMA_NOTYPES = "(_id, brand, model, " +
+    public static final String RACQUETS_COLUMNS = "(_id, brand, model, " +
             "weight, balance, stiffness, style, skill, strength, shaftDiameter)";
 
     // string template for inserting one Racquet object in a prepared statement
-    public static final String INSERT_RACQUET = "INSERT INTO " + RACQUETS_TABLE +
-            RACQUETS_SCHEMA_NOTYPES + "VALUES (?,?,?,?,?,?,?,?,?,?)";
+    public static final String INSERT_RACQUET = "INSERT OR IGNORE INTO " +
+            RACQUETS_TABLE + RACQUETS_COLUMNS + "VALUES (?,?,?,?,?,?,?,?,?,?)";
 
     // SQL string for getting all racquet objects
     public static final String GET_RACQUETS =
@@ -47,15 +49,13 @@ public class RacquetModel {
         createRacquetTable(); // only if it does not exist yet
     }
 
-    // creates a table with given name
+    // creates a racquets table in database
     private void createRacquetTable() {
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + JDBC_PATH)) {
             Statement statement = conn.createStatement();
 
-            // drop old table if it exists before creating new one
-            statement.execute("DROP TABLE IF EXISTS " + RACQUETS_TABLE);
             statement.execute("CREATE TABLE IF NOT EXISTS " + RACQUETS_TABLE +
-                    RACQUETS_SCHEMA_TYPES
+                    RACQUETS_SCHEMA
             );
             statement.close();
 

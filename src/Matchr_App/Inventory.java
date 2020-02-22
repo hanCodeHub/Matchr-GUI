@@ -179,4 +179,8 @@ public class Inventory {
             throw new InputMismatchException("cells can only have numeric or text values!");
     }
 
+
+    // clears the racquetList
+    public static void clearRacquets() { racquetList.clear(); }
+
 }

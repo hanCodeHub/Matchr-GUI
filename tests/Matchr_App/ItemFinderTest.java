@@ -27,6 +27,7 @@ public class ItemFinderTest {
     // ensures inventory is updated with racquets from excel
     @Before
     public void updateInventory() {
+        Inventory.clearRacquets();
         Inventory.readFromExcel();
     }
 

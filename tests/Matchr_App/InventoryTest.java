@@ -17,6 +17,7 @@ public class InventoryTest {
     public void readFromExcel() {
 
         // prepare the inventory and output .txt file
+        Inventory.clearRacquets();
         Inventory.readFromExcel();
         Inventory.writeToText();
         ArrayList<Racquet> inventory = Inventory.getInventory();
