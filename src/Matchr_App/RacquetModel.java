@@ -1,5 +1,6 @@
 package Matchr_App;
 
+import javax.swing.plaf.nimbus.State;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.*;
@@ -8,6 +9,8 @@ import java.util.List;
 
 // For saving and retrieving Racquet data in a SQL database
 public class RacquetModel {
+
+    private int rowCount;
 
     // CONSTANTS
     // database file in local static folder
@@ -31,9 +34,13 @@ public class RacquetModel {
     public static final String INSERT_RACQUET = "INSERT INTO " + RACQUETS_TABLE +
             RACQUETS_SCHEMA_NOTYPES + "VALUES (?,?,?,?,?,?,?,?,?,?)";
 
-    // string template for getting all racquet objects
+    // SQL string for getting all racquet objects
     public static final String GET_RACQUETS =
-            "SELECT COUNT(*) AS count, * FROM racquets ORDER BY brand";
+            "SELECT * FROM " + RACQUETS_TABLE + " ORDER BY brand";
+
+    // SQL string for getting a count of total rows
+    public static final String GET_COUNT =
+            "SELECT COUNT(1) AS count FROM " + RACQUETS_TABLE;
 
 
     // racquets table should be created upon new instance
@@ -62,12 +69,15 @@ public class RacquetModel {
     // inserts a list of racquets into the database
     public void insertRacquets (List<Racquet> racquets) {
 
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + JDBC_PATH)) {
+        // autoclose connection and statement
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + JDBC_PATH);
+             Statement statement = conn.createStatement();
+        ) {
+            // prepStatement reused for each racquet
             PreparedStatement prepStatement = null;
 
+            // for each racquet set each racquet property in the prepared INSERT statement
             for (Racquet racquet : racquets) {
-
-                // set each racquet property in the prepared statement constant
                 prepStatement = conn.prepareStatement(INSERT_RACQUET);
                 prepStatement.setInt(1, racquet.getId());
                 prepStatement.setString(2, racquet.getBrand());
@@ -85,6 +95,10 @@ public class RacquetModel {
             if (prepStatement != null) prepStatement.close();
             System.out.println("Racquet inventory successfully updated in the database.\n");
 
+            // total row count is updated
+            int count = statement.executeQuery(GET_COUNT).getInt("count");
+            setRowCount(count);
+
         } catch (SQLException e) {
             System.out.println("Issue inserting racquets into database: " + e.getMessage());
         }
@@ -94,19 +108,17 @@ public class RacquetModel {
     // returns a list of all Racquets from the database, ordered alphabetically by brand
     public void getAllRacquets() {
 
-
+        // autoclose connection, statement, results
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + JDBC_PATH);
-             Statement statement = conn.createStatement()) {
+            Statement statement = conn.createStatement();
+            ResultSet results = statement.executeQuery(GET_RACQUETS)
+        ) {
 
-            // get query results and set container list size to total number of rows
-            ResultSet results = statement.executeQuery(GET_RACQUETS);
-            int rowCount = results.getInt("count");
-            System.out.println(rowCount);
-            ArrayList<Racquet> racquetList = new ArrayList<>(rowCount);
+            // gets total row count and set container list size
+            ArrayList<Racquet> racquetList = new ArrayList<>(getRowCount());
 
+            // creates racquet from each row and adds to list
             while (results.next()) {
-
-                // create new Racquet with values from each column
                 Racquet racquet = new Racquet(
                         results.getInt("_id"),
                         results.getString("brand"),
@@ -119,12 +131,21 @@ public class RacquetModel {
                         results.getInt("strength"),
                         results.getFloat("shaftDiameter")
                 );
+                racquetList.add(racquet);
             }
 
-            results.close();
 
         } catch (SQLException e) {
             System.out.println("Issue getting racquets from database: " + e.getMessage());
         }
+    }
+
+    // getter/setter
+    public int getRowCount() {
+        return rowCount;
+    }
+
+    public void setRowCount(int rowCount) {
+        this.rowCount = rowCount;
     }
 }
