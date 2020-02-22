@@ -5,10 +5,11 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Arrays;
+import java.util.Objects;
 
 @XmlRootElement(name = "racquet")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Racquet implements Recommendable {
+public class Racquet implements Recommendable, Comparable<Racquet> {
 
     // unique identifier and info
     private int id;
@@ -169,4 +170,22 @@ public class Racquet implements Recommendable {
         return
                 "id = " + id + " | brand = " + brand + " | model = " + model +"\n";
     }
+
+    // Racquets are sorted by id
+    @Override
+    public int compareTo(Racquet o) {
+        return Integer.compare(this.getId(), o.getId());
+    }
+
+    // Racquets are verified by id, brand, model
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Racquet racquet = (Racquet) o;
+        return id == racquet.id &&
+                Objects.equals(brand, racquet.brand) &&
+                Objects.equals(model, racquet.model);
+    }
+
 }

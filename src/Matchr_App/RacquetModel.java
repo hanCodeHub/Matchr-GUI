@@ -1,6 +1,5 @@
 package Matchr_App;
 
-import javax.swing.plaf.nimbus.State;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.*;
@@ -106,7 +105,8 @@ public class RacquetModel {
 
 
     // returns a list of all Racquets from the database, ordered alphabetically by brand
-    public void getAllRacquets() {
+    public List<Racquet> getAllRacquets() {
+        ArrayList<Racquet> racquetList = null;
 
         // autoclose connection, statement, results
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + JDBC_PATH);
@@ -114,8 +114,8 @@ public class RacquetModel {
             ResultSet results = statement.executeQuery(GET_RACQUETS)
         ) {
 
-            // gets total row count and set container list size
-            ArrayList<Racquet> racquetList = new ArrayList<>(getRowCount());
+            // sets container list size according to number of rows
+            racquetList = new ArrayList<>(getRowCount());
 
             // creates racquet from each row and adds to list
             while (results.next()) {
@@ -134,10 +134,10 @@ public class RacquetModel {
                 racquetList.add(racquet);
             }
 
-
         } catch (SQLException e) {
             System.out.println("Issue getting racquets from database: " + e.getMessage());
         }
+        return racquetList;
     }
 
     // getter/setter

@@ -20,6 +20,9 @@ public class User {
     // special attributes
     private float shaftPref;  // badminton racquets
 
+    // preferred racquet - saved by user on UI
+    private Racquet racquet;
+
     // default constructor used when reading input
     public User() {}
 
@@ -62,6 +65,9 @@ public class User {
     public float getShaftPref() {
         return shaftPref;
     }
+    public Racquet getRacquet() {
+        return racquet;
+    }
 
     // setters
     public void setBrand(String brand) {
@@ -87,6 +93,9 @@ public class User {
     }
     public void setShaftPref(float shaftPref) {
         this.shaftPref = shaftPref;
+    }
+    public void setRacquet(Racquet racquet) {
+        this.racquet = racquet;
     }
 
     @Override
