@@ -133,8 +133,18 @@
 
     <bottom>
         <!-- BUTTONS -->
-        <HBox spacing="10" alignment="CENTER">
-            <padding><Insets bottom="30"/></padding>
+        <HBox spacing="20" alignment="CENTER">
+            <padding><Insets bottom="40"/></padding>
+
+            <!-- update button -->
+            <Button fx:id="updateBtn" onAction="#onSubmit"
+                    text="Update Inventory" prefWidth="140">
+                <graphic>
+                    <ImageView>
+                        <Image url="@/toolbarButtonGraphics/general/Import24.gif"/>
+                    </ImageView>
+                </graphic>
+            </Button>
 
             <!-- recommend button -->
             <Button fx:id="recommendBtn" onAction="#onSubmit"
@@ -148,10 +158,20 @@
 
             <!-- reset button -->
             <Button fx:id="resetBtn" onAction="#onSubmit"
-                    text="Reset" prefWidth="120">
+                    text="Reset" prefWidth="100">
                 <graphic>
                     <ImageView>
                         <Image url="@/toolbarButtonGraphics/general/Redo24.gif"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+
+            <!-- save preferences -->
+            <Button fx:id="saveBtn" onAction="#onSubmit"
+                    text="Save Match" prefWidth="140">
+                <graphic>
+                    <ImageView>
+                        <Image url="@/toolbarButtonGraphics/general/Save24.gif"/>
                     </ImageView>
                 </graphic>
             </Button>

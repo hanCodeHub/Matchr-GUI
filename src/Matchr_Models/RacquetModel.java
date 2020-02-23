@@ -50,7 +50,7 @@ public class RacquetModel {
     }
 
     // creates a racquets table in database
-    private void createRacquetTable() {
+    public void createRacquetTable() {
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + JDBC_PATH);
              Statement statement = conn.createStatement()) {
 

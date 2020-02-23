@@ -81,7 +81,7 @@ public class UserModel {
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + JDBC_PATH);
             PreparedStatement prepStatement = conn.prepareStatement(GET_USER_RACQUET)) {
 
-            // get racquet columns: brand | model based on user name
+            // gets racquet columns: brand | model based on user name
             prepStatement.setString(1, user.getName());
             ResultSet results = prepStatement.executeQuery();
 

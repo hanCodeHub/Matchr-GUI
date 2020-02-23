@@ -4,6 +4,7 @@ import Matchr_App.Inventory;
 import Matchr_App.ItemFinder;
 import Matchr_App.Racquet;
 import Matchr_App.User;
+import Matchr_Models.RacquetModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,11 +13,17 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // handles events from UI and returns data to UI
 public class Controller {
 
-    // UI OBJECTS
+    // APP LOGIC FIELDS
+    RacquetModel racquetModel;
 
+
+    // UI OBJECTS
     // controls
     @FXML
     private TextField brand;
@@ -35,27 +42,52 @@ public class Controller {
     @FXML
     private Slider shaftDiameter;
 
-    // result displayed
+    // control for displaying results
     @FXML
     private Text resultsText;
 
     // buttons
     @FXML
+    private Button updateBtn;
+    @FXML
     private Button recommendBtn;
     @FXML
     private Button resetBtn;
 
+    public Controller() {
+        this.racquetModel = new RacquetModel();
+    }
 
     // EVENT HANDLERS
     // calls the event handler depending on the button clicked
     @FXML
     public void onSubmit(ActionEvent e) {
-        // recommend
-        if (e.getSource().equals(recommendBtn))
+
+        // update inventory
+        if (e.getSource().equals(updateBtn))
+            handleUpdate();
+
+        // recommend racquet
+        else if (e.getSource().equals(recommendBtn))
             handleRec();
-            // reset
+
+        // reset controls
         else if (e.getSource().equals(resetBtn))
             handleReset();
+
+    }
+
+    // updates the database with a new inventory from excel
+    private void handleUpdate() {
+
+        // read the excel source data into the database
+        Inventory.readFromExcel();
+        ArrayList<Racquet> racquetSrc = Inventory.getInventory();
+        racquetModel.createRacquetTable();
+        racquetModel.insertRacquets(racquetSrc);
+
+        // display confirmation message on UI
+        getResultsText().setText("Inventory successfully updated.");
     }
 
     // reset method for returning all the controls to default
@@ -84,13 +116,20 @@ public class Controller {
                 (float) getShaftDiameter().getValue()
         );
 
-        // search inventory for matching racquet for the user
+        // feed racquets from database into itemfinder
         ItemFinder<Racquet> racquetFinder = new ItemFinder<>(user);
-        racquetFinder.rankItems(Inventory.getInventory());
+        List<Racquet> racquets = racquetModel.getAllRacquets();
 
-        // display the recommendation
-        Racquet recommended = racquetFinder.getTopResult();
-        displayResult(recommended);
+        // rank and display top recommendation
+        if (racquets.size() > 0) {
+            racquetFinder.rankItems(racquets);
+            Racquet recommended = racquetFinder.getTopResult();
+            displayResult(recommended);
+
+        } else { // if no data
+            getResultsText().setText("No racquets found in database.");
+        }
+
     }
 
     // displays recommendation to the results text control

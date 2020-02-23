@@ -1,6 +1,5 @@
 package Matchr_UI;
 
-import Matchr_App.Inventory;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,8 +18,6 @@ public class JavaFX_App extends Application {
         primaryStage.setScene(new Scene(root, 700, 750));
         primaryStage.show();
 
-        // populates inventory with data (change after implementing database)
-        Inventory.readFromExcel();
     }
 
     public static void main(String[] args) {
