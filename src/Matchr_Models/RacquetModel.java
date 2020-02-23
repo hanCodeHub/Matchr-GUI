@@ -18,7 +18,7 @@ public class RacquetModel {
     private static final Path JDBC_PATH = Paths.get("static/inventory.db");
 
     // racquets table and columns names
-    private static final String RACQUETS_TABLE = "racquets";
+    public static final String RACQUETS_TABLE = "racquets";
 
     // SQL string for table definition
     public static final String RACQUETS_SCHEMA = "(" +
@@ -51,13 +51,11 @@ public class RacquetModel {
 
     // creates a racquets table in database
     private void createRacquetTable() {
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + JDBC_PATH)) {
-            Statement statement = conn.createStatement();
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + JDBC_PATH);
+             Statement statement = conn.createStatement()) {
 
             statement.execute("CREATE TABLE IF NOT EXISTS " + RACQUETS_TABLE +
-                    RACQUETS_SCHEMA
-            );
-            statement.close();
+                    RACQUETS_SCHEMA);
 
         } catch (SQLException e) {
             System.out.println("Issue creating the racquets table: " + e.getMessage());
@@ -70,14 +68,11 @@ public class RacquetModel {
 
         // autoclose connection and statement
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + JDBC_PATH);
-             Statement statement = conn.createStatement();
-        ) {
-            // prepStatement reused for each racquet
-            PreparedStatement prepStatement = null;
+            Statement statement = conn.createStatement();
+            PreparedStatement prepStatement = conn.prepareStatement(INSERT_RACQUET)) {
 
             // for each racquet set each racquet property in the prepared INSERT statement
             for (Racquet racquet : racquets) {
-                prepStatement = conn.prepareStatement(INSERT_RACQUET);
                 prepStatement.setInt(1, racquet.getId());
                 prepStatement.setString(2, racquet.getBrand());
                 prepStatement.setString(3, racquet.getModel());
@@ -91,7 +86,6 @@ public class RacquetModel {
 
                 prepStatement.executeUpdate();
             }
-            if (prepStatement != null) prepStatement.close();
             System.out.println("Racquet inventory successfully updated in the database.\n");
 
             // total row count is updated
@@ -141,6 +135,7 @@ public class RacquetModel {
     }
 
     // getter/setter
+
     public int getRowCount() {
         return rowCount;
     }

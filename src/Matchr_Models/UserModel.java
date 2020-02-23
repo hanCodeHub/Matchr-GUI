@@ -13,7 +13,7 @@ public class UserModel {
     private static final Path JDBC_PATH = Paths.get("static/inventory.db");
 
     // racquets table and columns names
-    private static final String USERS_TABLE = "users";
+    public static final String USERS_TABLE = "users";
 
     // SQL string for table definition
     public static final String USERS_SCHEMA = "(" +
@@ -27,20 +27,20 @@ public class UserModel {
 
     // string template for inserting one User object in a prepared statement
     public static final String INSERT_USER = "INSERT OR IGNORE INTO " + USERS_TABLE +
-            USERS_COLUMNS + "VALUES (?,?)";
+            USERS_COLUMNS + " VALUES (?,?)";
 
     // SQL string for getting a User's saved racquet brand|model from database
     public static final String GET_USER_RACQUET =
-            "SELECT racquets.brand, racquets.model FROM " +
-            USERS_TABLE + " INNER JOIN racquets " +
-            "ON users.racquet_id = racquets._id";
+            "SELECT racquets.brand, racquets.model " +
+            "FROM " + USERS_TABLE + " INNER JOIN " + RacquetModel.RACQUETS_TABLE +
+            " ON users.racquet_id = racquets._id " +
+            "WHERE users.name IS ?";
 
 
     // users table should be created upon new instance
     public UserModel() {
         createUserTable(); // only if it does not exist yet
     }
-
 
     // creates a users table in database
     private void createUserTable() {
@@ -59,8 +59,8 @@ public class UserModel {
 
     // inserts a user into the users table
     public void insertUser(User user) {
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + JDBC_PATH)) {
-            PreparedStatement prepStatement = conn.prepareStatement(INSERT_USER);
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + JDBC_PATH);
+             PreparedStatement prepStatement = conn.prepareStatement(INSERT_USER)) {
 
             // set user columns and update table
             prepStatement.setString(1, user.getName());
@@ -73,7 +73,7 @@ public class UserModel {
     }
 
 
-    // returns a user's saved racquet from database
+    // returns a user's saved racquet from database - just the name
     public String getUserSavedRacquet(User user) {
         // racquet name value returned as text
         StringBuilder racquetName = new StringBuilder();
@@ -81,13 +81,15 @@ public class UserModel {
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + JDBC_PATH);
             PreparedStatement prepStatement = conn.prepareStatement(GET_USER_RACQUET)) {
 
-            // get racquet columns: brand | model
+            // get racquet columns: brand | model based on user name
+            prepStatement.setString(1, user.getName());
             ResultSet results = prepStatement.executeQuery();
-            while (results.next()) {
-                racquetName.append(results.getString("brand"));
-                racquetName.append(" ");
-                racquetName.append(results.getString("model"));
-            }
+
+            // only 1 result since user name is unique
+            results.next();
+            racquetName.append(results.getString("brand"));
+            racquetName.append(" ");
+            racquetName.append(results.getString("model"));
 
         } catch (SQLException e) {
             System.out.println("Issue retrieving user's saved racquet: " + e.getMessage());
