@@ -138,7 +138,7 @@
 
             <!-- update button -->
             <Button fx:id="updateBtn" onAction="#onSubmit"
-                    text="Update Inventory" prefWidth="140">
+                    text="Update Inventory" prefWidth="180">
                 <graphic>
                     <ImageView>
                         <Image url="@/toolbarButtonGraphics/general/Import24.gif"/>
@@ -148,7 +148,7 @@
 
             <!-- recommend button -->
             <Button fx:id="recommendBtn" onAction="#onSubmit"
-                    text="Recommend" prefWidth="120">
+                    text="Recommend Racquet" prefWidth="180">
                 <graphic>
                     <ImageView>
                         <Image url="@/toolbarButtonGraphics/general/TipOfTheDay24.gif"/>
@@ -158,20 +158,10 @@
 
             <!-- reset button -->
             <Button fx:id="resetBtn" onAction="#onSubmit"
-                    text="Reset" prefWidth="100">
+                    text="Reset Preferences" prefWidth="180">
                 <graphic>
                     <ImageView>
                         <Image url="@/toolbarButtonGraphics/general/Redo24.gif"/>
-                    </ImageView>
-                </graphic>
-            </Button>
-
-            <!-- save preferences -->
-            <Button fx:id="saveBtn" onAction="#onSubmit"
-                    text="Save Match" prefWidth="140">
-                <graphic>
-                    <ImageView>
-                        <Image url="@/toolbarButtonGraphics/general/Save24.gif"/>
                     </ImageView>
                 </graphic>
             </Button>
