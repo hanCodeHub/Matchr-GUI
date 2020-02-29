@@ -2,7 +2,6 @@ package Matchr_App;
 
 import Matchr_Models.RacquetModel;
 
-import javax.print.DocFlavor;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -64,11 +63,13 @@ public class ItemBuffer {
             }
         }
 
-        public void lazyRead() {
-
+        public void fetchRead(int latency) {
 
             while (true) {
+
                 try {
+                    Thread.sleep(latency);
+
                     lock.lock();
 
                     if (buffer.isEmpty()) continue;
@@ -76,17 +77,25 @@ public class ItemBuffer {
                     System.out.println(BLUE + "Reader displaying: ");
                     System.out.println(buffer.remove(0));
 
-                    if (finished) break;
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 } finally {
                     lock.unlock();
                 }
+                if (finished) break;
+            }
+
+            // read the remaining objects after the buffer has finished loading
+            while (!buffer.isEmpty()) {
+                System.out.println(BLUE + "Reader displaying: ");
+                System.out.println(buffer.remove(0));
             }
         }
 
         // reads items from buffer into console one by one
         @Override
         public void run() {
-            lazyRead();
+            fetchRead(1000);
         }
 
     }
@@ -105,7 +114,7 @@ public class ItemBuffer {
 
                 // sleeps thread to simulate the loading time of item
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(random.nextInt(1000));
 
                     buffer.add(inventory.get(i));
 
